@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Register</title>
+	</head>
+
+	<body>
+		<form action="/register" method="POST">
+			<label for="category">Category</label>
+			<select name="category" id="category">
+				<option value="user">User</option>
+				<option value="owner">Parking Owner</option>
+			</select>
+			<label for="name">Name</label>
+			<input
+				type="name"
+				id="name"
+				name="name"
+				placeholder="Enter Name"
+				required
+			/>
+			<label for="email">Email</label>
+			<input
+				type="email"
+				id="email"
+				name="email"
+				placeholder="Enter Email"
+				required
+			/>
+			<label for="contact">Contact No.</label>
+			<input
+				type="contact"
+				id="contact"
+				name="contact"
+				placeholder="Enter Phone No."
+				required
+			/>
+			<label for="password">Password</label>
+			<input
+				type="password"
+				id="password"
+				name="password"
+				placeholder="Create Password"
+				required
+			/>
+			<label for="password2">Confirm Password</label>
+			<input
+				type="password"
+				id="password2"
+				name="password2"
+				placeholder="Confirm Password"
+				required
+			/>
+			<button type="submit">Register</button>
+		</form>
+		<p>Have An Account? <a href="/login">Login</a></p>
+	</body>
+</html>
