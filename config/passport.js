@@ -72,21 +72,31 @@ module.exports = function (passport) {
 		}
 		return token;
 	};
-	function ownerjwtCallback(token, done) {
-		try {
-			done(null, token.owner);
-		} catch (error) {
-			console.log(error);
-			done(error);
-		}
+	function ownerjwtCallback(req,token, done) {
+		Owner.findById(token.owner._id, function(err, user) {
+			if (err) { return done(err, false); }
+	  
+			if (user) {
+			  req.owner = user; // <= Add this line
+			  done(null, user);
+			} else {
+			  done(null, false);
+			}
+		  });
 	}
-	function userjwtCallback(token, done) {
-		try {
-			done(null, token.user);
-		} catch (error) {
-			console.log(error);
-			done(error);
-		}
+
+	function userjwtCallback(req,token, done) {
+		User.findById(token.user._id, function(err, user) {
+			
+			if (err) { return done(err, false); }
+	  
+			if (user) {
+			  req.user = user; // <= Add this line
+			  done(null, user);
+			} else {
+			  done(null, false);
+			}
+		  });
 	}
 	passport.use(
 		"user",
@@ -102,6 +112,7 @@ module.exports = function (passport) {
 			{
 				secretOrKey: process.env.ACCESS_TOKEN,
 				jwtFromRequest: ExtractJWT.fromExtractors([usercookieExtractor]),
+				passReqToCallback: true
 			},
 			userjwtCallback
 		)
@@ -112,6 +123,7 @@ module.exports = function (passport) {
 			{
 				secretOrKey: process.env.ACCESS_TOKEN,
 				jwtFromRequest: ExtractJWT.fromExtractors([ownercookieExtractor]),
+				passReqToCallback: true
 			},
 			ownerjwtCallback
 		)

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+    <script src="https://api.mapbox.com/mapbox-gl-js/v2.1.1/mapbox-gl.js"></script>
+    <link href="https://api.mapbox.com/mapbox-gl-js/v2.1.1/mapbox-gl.css" rel="stylesheet" />
+    <title>Parkings</title>
+</head>
+
+<body>
+    <div id="map" style="width:100%; height:500px"></div>
+    <h1>All Parkings</h1>
+    <ul>
+        <% for(let parking of parkings) {%>
+            <li><a href="/user/parkings/<%=parking._id%>"><%= parking.title %></a></li>    
+        <% } %>  
+    </ul>
+    <script>
+        const mapToken = '<%-process.env.MAPBOX_TOKEN%>';
+        const parkings =  { features: <%- JSON.stringify(parkings) %>}
+    </script>
+    <script src="/javascripts/clusterMap.js"></script>
+</body>
+
+</html>

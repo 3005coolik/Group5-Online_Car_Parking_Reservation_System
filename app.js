@@ -1,5 +1,9 @@
+if(process.env.NODE_ENV !== "production"){
+    require('dotenv').config();
+}
 const express = require("express");
 const morgan = require("morgan");
+const path=require('path');
 const mongoose = require("mongoose");
 const passport = require("passport");
 const cookieParser = require("cookie-parser");
@@ -7,7 +11,7 @@ const indexControllers = require("./controllers/indexControllers");
 const userControllers = require("./controllers/userControllers");
 const ownerControllers = require("./controllers/ownerControllers");
 
-require("dotenv").config();
+
 
 const app = express();
 app.use(cookieParser());
@@ -17,6 +21,7 @@ require("./config/passport")(passport);
 
 // DB config
 const db = process.env.DBURI;
+//console.log(db)
 
 // Connect to mongo
 mongoose
@@ -31,11 +36,14 @@ mongoose
 	});
 
 // Middleware
+app.use(express.static('public'))
 app.use(morgan("dev"));
 app.set("view engine", "ejs");
+app.set('views',path.join(__dirname,'views'));
 app.use(express.urlencoded({ extended: true }));
 
 app.use("/", indexControllers);
+
 app.use(
 	"/user",
 	passport.authenticate("jwt_user", { session: false }),

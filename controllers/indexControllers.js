@@ -93,12 +93,13 @@ router.post("/user/login", (req, res, next) => {
 			if (error) {
 				console.log(error);
 			}
+			//req.user=user;
 			const token = jwt.sign({ user }, process.env.ACCESS_TOKEN, {
 				algorithm: "HS256",
 				expiresIn: jwtExpirySeconds,
 			});
 			res.cookie("token", token, { maxAge: jwtExpirySeconds * 1000 });
-			res.redirect(`/user/${user._id}`);
+			res.redirect("/user/parkings");
 		});
 	})(req, res, next);
 });
@@ -116,6 +117,7 @@ router.post("/owner/login", (req, res, next) => {
 			if (error) {
 				console.log(error);
 			}
+			//req.owner=owner;
 			const token = jwt.sign({ owner }, process.env.ACCESS_TOKEN, {
 				algorithm: "HS256",
 				expiresIn: jwtExpirySeconds,
@@ -123,7 +125,7 @@ router.post("/owner/login", (req, res, next) => {
 			res.cookie("token_owner", token, {
 				maxAge: jwtExpirySeconds * 1000,
 			});
-			res.redirect(`/owner/${owner._id}`);
+			res.redirect(`/owner/${owner._id}/parkings`);
 		});
 	})(req, res, next);
 });
