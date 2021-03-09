@@ -8,17 +8,17 @@ const passport = require("passport");
 const User = require("../models/Users");
 const Owner = require("../models/Owners");
 const jwtExpirySeconds = 30000;
-// GET /
+// GET home page
 router.get("/", (req, res) => {
 	res.render("home");
 });
 
-// GET /register
+// GET register form
 router.get("/register", (req, res) => {
 	res.render("register");
 });
 
-// GET /login
+// GET login form
 router.get("/login", (req, res) => {
 	res.render("login");
 });
@@ -99,7 +99,7 @@ router.post("/user/login", (req, res, next) => {
 				expiresIn: jwtExpirySeconds,
 			});
 			res.cookie("token", token, { maxAge: jwtExpirySeconds * 1000 });
-			res.redirect("/user/parkings");
+			res.redirect(`/user/${user._id}`);
 		});
 	})(req, res, next);
 });
@@ -125,7 +125,7 @@ router.post("/owner/login", (req, res, next) => {
 			res.cookie("token_owner", token, {
 				maxAge: jwtExpirySeconds * 1000,
 			});
-			res.redirect(`/owner/${owner._id}/parkings`);
+			res.redirect(`/owner/${owner._id}`);
 		});
 	})(req, res, next);
 });

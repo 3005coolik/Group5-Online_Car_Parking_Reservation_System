@@ -24,9 +24,8 @@ const ParkingLocationSchema=new Schema({
         ref:'owner'
     }
 },opts);
-ParkingLocationSchema.virtual('properties.popUpMarkup').get(function () {
-    return `
-    <strong><a href="/user/parkings/${this._id}">${this.title}</a><strong>
-    <p>${this.description.substring(0, 20)}...</p>`
+ParkingLocationSchema.virtual('properties.data').get(function () {
+    const obj={pid: this._id, title: this.title , description: this.description.substring(0, 20)};
+    return obj;
 });
 module.exports=mongoose.model('ParkingLocation',ParkingLocationSchema);

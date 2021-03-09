@@ -15,8 +15,8 @@
     <div id="map" style="width:100%; height:500px"></div>
     <h1>All Parkings</h1>
     <ul>
-        <% for(let parking of parkings) {%>
-            <li><a href="/user/parkings/<%=parking._id%>"><%= parking.title %></a></li>    
+        <% for(var parking of parkings) {%>
+            <li><a href="/user/<%= user_id %>/<%=parking._id%>"><%= parking.title %></a></li>    
         <% } %>  
     </ul>
     <script
@@ -29,7 +29,8 @@
     <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.auto.min.js"></script>
     <script>
         const mapToken = '<%-process.env.MAPBOX_TOKEN%>';
-        const parkings =  { features: <%- JSON.stringify(parkings) %>}
+        const parkings =  { features: <%-JSON.stringify(parkings)%>};
+        const uid= '<%- user_id %>'; 
     </script>
     <script src="/javascripts/clusterMap.js"></script>
 </body>

@@ -8,7 +8,7 @@
 </head>
 
 <body>
-    <form action="/owner/<%=id%>/parkings" method="POST">
+    <form action="/owner/<%=id%>" method="POST">
         <div>
             <label for="title">Title</label>
             <input type="text" id="title" name="parking[title]">
@@ -26,7 +26,7 @@
             <input type="number" id="price" name="parking[price]">
         </div>
         <button>Add Parking</button>
-        <a href="/owner/<%=id%>/parkings">All Parkings</a>
+        <a href="/owner/<%=id%>">All Parkings</a>
     </form>
 </body>
 
