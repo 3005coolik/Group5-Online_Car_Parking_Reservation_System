@@ -4,9 +4,11 @@ mapboxgl.accessToken = mapToken;
 const map = new mapboxgl.Map({
     container: 'map',
     style: 'mapbox://styles/mapbox/dark-v10',
-    center: [77.1025,28.7041],
-    zoom: 3
+    center: [75.8577,22.7196],
+    zoom: 3.5
 });
+
+
 
 map.on('load', function () {
     // Add a new source from our GeoJSON data and
@@ -21,6 +23,24 @@ map.on('load', function () {
         clusterMaxZoom: 14, // Max zoom to cluster points on
         clusterRadius: 50 // Radius of each cluster when clustering points (defaults to 50)
     });
+
+    map.addControl(
+        new MapboxGeocoder({
+            accessToken: mapboxgl.accessToken,
+            mapboxgl: mapboxgl
+        })
+    );
+
+    map.addControl(new mapboxgl.NavigationControl());
+
+    map.addControl(
+        new mapboxgl.GeolocateControl({
+        positionOptions: {
+            enableHighAccuracy: true
+        },
+        trackUserLocation: true
+        })
+    );
 
     map.addLayer({
         id: 'clusters',
