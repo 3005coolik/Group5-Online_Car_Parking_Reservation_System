@@ -13,11 +13,11 @@
 <body>
     <h1>Parkings of <%=owner.name%> </h1>
     <div>
-        <a href="/owner/<%=id%>/parkings/new">Add Parking</a>
+        <a href="/owner/<%=id%>/newParking">Add Parking</a>
     </div>
     <ul>
         <% for(let parking of parkings) {%>
-            <li><a href="/owner/<%=id%>/parkings/<%=parking._id%>"><%= parking.title %></a></li>    
+            <li><a href="/owner/<%=id%>/<%=parking._id%>"><%= parking.title %></a></li>    
         <% } %>  
     </ul>
     <script>

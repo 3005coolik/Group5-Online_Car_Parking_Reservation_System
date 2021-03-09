@@ -9,20 +9,22 @@ const mapBoxToken=process.env.MAPBOX_TOKEN;
 //console.log(mapBoxToken);
 const geocoder=mbxGeocoding({accessToken:mapBoxToken});
 
-
-router.get('/:id/parkings',async(req,res)=>{
+// Get all parking of current owner
+router.get('/:id',async(req,res)=>{
 	const id=req.params.id
     const parkings=await ParkingLocation.find({owner:id});
     const owner=await Owner.findById(id);
     res.render('parkings/index',{parkings,id,owner});
 })
 
-router.get('/:id/parkings/new',(req,res)=>{
+// Get form to add new parking
+router.get('/:id/newParking',(req,res)=>{
     const id=req.params.id;
 	res.render('parkings/new',{id});
 })
 
-router.post('/:id/parkings',async(req,res)=>{
+// post request to save new parking
+router.post('/:id',async(req,res)=>{
     //console.log(req.body);
     const GeoData=await geocoder.forwardGeocode({
         query:req.body.parking.location,
@@ -32,10 +34,11 @@ router.post('/:id/parkings',async(req,res)=>{
     parking.geometry=GeoData.body.features[0].geometry;
     parking.owner=req.owner._id;
     await parking.save();
-    res.redirect(`/owner/${req.owner._id}/parkings/${parking._id}`);
+    res.redirect(`/owner/${req.owner._id}`);
 })
 
-router.get('/:id/parkings/:p_id',async(req,res)=>{
+// Get parking details 
+router.get('/:id/:p_id',async(req,res)=>{
     const parking=await ParkingLocation.findById(req.params.p_id);
 	const id=req.params.id;
     res.render('parkings/show',{parking,id});

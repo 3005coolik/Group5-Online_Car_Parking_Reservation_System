@@ -102,8 +102,10 @@ map.on('load', function () {
     // the unclustered-point layer, open a popup at
     // the location of the feature, with
     // description HTML from its properties.
-    map.on('click', 'unclustered-point', function (e) {
-        const { popUpMarkup } = e.features[0].properties;
+    map.on('click', 'unclustered-point', function (e) { 
+        const { pid,title,description } = JSON.parse(e.features[0].properties.data);
+        const popUpMarkup= `<strong><a href="/user/${uid}/${pid}">${title}</a><strong>
+        <p>${description}...</p>`;
         const coordinates = e.features[0].geometry.coordinates.slice();
 
         // Ensure that if the map is zoomed out such that
