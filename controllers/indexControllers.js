@@ -130,4 +130,20 @@ router.post("/owner/login", (req, res, next) => {
 	})(req, res, next);
 });
 
+// GET on /users/logout
+router.get("/users/logout", (req, res) => {
+	if(req.cookies && req.cookies.hasOwnProperty("token")) {
+		res.cookie("token","",{expires: new Date(0)});
+	}
+	res.redirect("/");
+})
+
+//GET on /owners/logout
+router.get("/owners/logout", (req, res) => {
+	if(req.cookies && req.cookies.hasOwnProperty("token_owner")) {
+		res.cookie("token_owner","",{expires: new Date(0)});
+	}
+	res.redirect("/");
+})
+
 module.exports = router;
