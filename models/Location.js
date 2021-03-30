@@ -16,7 +16,10 @@ const ParkingLocationSchema=new Schema({
             required:true
         }
     },
-    price:Number,
+    price2w:Number,
+    slot2w:Number,
+    price4w:Number,
+    slot4w:Number,
     description:String,
     location:String,
     owner:{
