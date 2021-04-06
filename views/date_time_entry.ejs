@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> Date_Time </title>
+    </head>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    
+    <body>
+    <form method="post" action="/user/<%=user_id%>/<%=parking._id%>" >
+    <label>Date of Booking : </label>
+    <input name="startdate" type="date" id="txtDate" /> 
+    <br>
+    <br>
+    <label>Start From</label>
+    <input name="starttime" type="time" id="time" />
+    <br>
+    <br>
+    <label>Duration of Booking</label>
+    <input name="dur" type="number" id="duration" />
+    <label>(in minutes)</label> 
+    <br>
+    <br>
+    <input type="submit" id="submit" value="Next" />
+    </form>
+    </body>
+
+    <script> 
+        document.getElementById("duration").min = 30 ;
+        document.getElementById("duration").defaultValue = "30";   
+    </script>
+    
+    <script>
+        $(function(){
+    var dtToday = new Date();
+    
+    var month = dtToday.getMonth() + 1;
+    var day = dtToday.getDate();
+    var year = dtToday.getFullYear();
+    if(month < 10)
+        month = '0' + month.toString();
+    if(day < 10)
+        day = '0' + day.toString();
+    
+    var maxDate = year + '-' + month + '-' + day;
+
+    $('#txtDate').attr('min', maxDate);
+});
+    </script>
+    <script>
+        var date = document.getElementById("txtdate").value;
+        var timer = document.getElementById("time").value;
+        var dur = document.getElementById("duration").value;
+
+        module.exports = { date , timer ,dur};
+    </script>
+    <body>
+        
+    </body>
+</html>
