@@ -10,17 +10,21 @@ const bookedslotSchema = new Schema({
         type: Number,
         required: true
     },
-    bookedtime:{
-        type:Date, 
+    starttime:{
+        type:Number, 
+        required: true
+    },
+    endtime:{
+        type:Number,
         required: true
     },
     vehiclenumber:{
         type:String,
-        required: true
+        required: false
     },
     vehicletype: {
         type:String,
-        required: true
+        required: false
     },
     user:{
         type:Schema.Types.ObjectId,
@@ -29,4 +33,4 @@ const bookedslotSchema = new Schema({
 })
 const BookedSlot = mongoose.model("bookedslot",bookedslotSchema);
 
-module.exports = Owner;
+module.exports = BookedSlot;
