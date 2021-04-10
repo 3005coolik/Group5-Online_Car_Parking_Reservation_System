@@ -85,6 +85,7 @@ background-size: 100% 60%;
  color: #ffffff !important;
 
 }
+
 .box
 {
     height: 50px;
@@ -104,7 +105,7 @@ background-size: 100% 60%;
     background: #ffffff;
     box-shadow:0 12.5px 10px rgba(0, 0, 0, 0.06);
 }
- /* Split the screen in half */
+ /* Split the screen in half 
 .split {
   height: 100%;
   width: 50%;
@@ -113,78 +114,7 @@ background-size: 100% 60%;
   top: 0;
   overflow-x: hidden;
   padding-top: 20px;
-}
-
-/* Control the left side */
-.left {
-  left: 0;
-  background-color: #fff;
-}
-
-/* Control the right side */
-.right {
-  right: 0;
-    background-image: url("https://cdn4.vectorstock.com/i/1000x1000/84/53/hospital-scene-with-sick-patient-in-bed-on-white-vector-30538453.jpg");
-     background-repeat: no-repeat;
-    background-size:cover;
-      background-position: top;
-  background-color: #fff;
-}
-
-/* If you want the content centered horizontally and vertically */
-.centered {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  text-align: center;
-}
-
-/* Style the image inside the centered container, if needed */
-.centered img {
-  width: 150px;
-  border-radius: 50%;
-} 
-
-.col-1
-
-{
-
-    flex-basis: 50%;
-
-    min-width: 300px;
-
-}
-
-.form-box
-
-{
-
-    width: 900px;
-	height: 600px;
-	position: relative;
-    top: 50px;
-    left: 2px;
-	background: rgba(169, 27, 13, 0.71);
-    /*box-shadow:
-  0 2.8px 2.2px rgba(0, 0, 0, 0.034),
-  0 6.7px 5.3px rgba(0, 0, 0, 0.048),
-  0 12.5px 10px rgba(0, 0, 0, 0.06),
-  0 22.3px 17.9px rgba(0, 0, 0, 0.072),
-  0 41.8px 33.4px rgba(0, 0, 0, 0.086),
-  0 100px 80px rgba(0, 0, 0, 0.12);*/
-    border-radius: 20px;
-
-
-}
-.p1 {
-    padding-top: 30px;
-  font-family: "Times New Roman", Times, serif;
-    font-weight: bold;
-    font-size: 30px;
-    color: #fff;
-}
-
+}*/
 
 /*******************************************************LOGIN PAGE*******************************************************************/
 
