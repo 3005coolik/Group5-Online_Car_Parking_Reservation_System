@@ -193,7 +193,7 @@ background-size: 100% 60%;
    
 height: 100%;
     
-    background: url("/img/bg1.jpg");
+    background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ),url("img/bg1.jpg");
     background-blend-mode: darken;
      background-size:cover;
     background-repeat: no-repeat;
@@ -221,7 +221,7 @@ height: 100%;
  
     height: 700px;
     width:50%;
-    background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url("/img/bg2.jpg");
+    background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url("img/bg2.jpg");
     background-size: cover;
     background-position: center;
     background-blend-mode: darken;
@@ -360,7 +360,7 @@ h1{
    
 height: 100%;
     
-    background: url("/img/bg1.jpg");
+    background: url("img/bg1.jpg");
     background-blend-mode: darken;
      background-size:cover;
     background-repeat: no-repeat;
