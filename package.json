@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "author": "Mahi",
   "license": "ISC",
   "dependencies": {
     "@mapbox/mapbox-sdk": "^0.12.1",
@@ -25,5 +25,13 @@
   "devDependencies": {
     "morgan": "^1.10.0",
     "nodemon": "^2.0.7"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/3005coolik/Group5-Online_Car_Parking_Reservation_System.git"
+  },
+  "bugs": {
+    "url": "https://github.com/3005coolik/Group5-Online_Car_Parking_Reservation_System/issues"
+  },
+  "homepage": "https://github.com/3005coolik/Group5-Online_Car_Parking_Reservation_System#readme"
 }

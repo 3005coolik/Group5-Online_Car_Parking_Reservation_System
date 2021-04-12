@@ -118,7 +118,7 @@ background-size: 100% 60%;
 
 /*******************************************************LOGIN PAGE*******************************************************************/
 
-#login-page
+#loginpage
 {
    
 height: 100%;
@@ -173,7 +173,7 @@ h1{
     margin-top:10px;
     padding: 0 10px 40px;
     text-align: left;
-    font-size: 24px;
+    font-size: 26px;
     color:aliceblue;
 }
 .loginbox
@@ -199,8 +199,14 @@ h1{
     margin-bottom: 20px;
     
 }
+.inp
+{
+    color:#fff;
+    font-size: 22px;
+    font-weight: bold;
+}
 
-.loginbox input[type="text"], input[type="password"]
+.loginbox input[type="text"], input[type="password"], input[type="name"], input[type="contact"]
 {
     border: none;
     border-bottom: 2px solid #fff;
@@ -221,7 +227,7 @@ h1{
     font-size: 20px;
 }
 
-#role
+#category
 {
     margin-top: 10px;
     margin-bottom: 20px;
@@ -229,7 +235,7 @@ h1{
     height: 40px;
     background: rgba(255, 255, 255, 0);
     color: #fff;
-    font-weight: 4px;
+    font-weight: 5px;
     border: none;
     border-bottom: 2px solid;
     
@@ -309,4 +315,36 @@ height: 100%;
     border: 0px solid #fff;
     border-radius: 15px;
 }
+.signupbox h1{
+    margin-bottom: 25px;
+}
 
+.title{
+    font-size: 25px;
+    padding:0px;
+}
+.signupbox input
+{
+   margin-top:-1px;
+    
+}
+.signupbox input[type="password"], input[type="contact"]
+{
+   width:80%;
+   display: inline-block;
+}
+.signupbox #category
+{
+    margin-top: -1px;
+    width: 80%;
+
+}
+.inpt
+{
+    color:#fff;
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: -1px;
+    margin-top:-1px;
+    
+}
