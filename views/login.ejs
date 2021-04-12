@@ -31,6 +31,9 @@
 			/>
 			<button type="submit">Login</button>
 		</form>
+		<a id="googlebutton" href="/auth/google" class="btn red darken-1">
+			<i class="fab fa-google left"></i>Log in with google 
+		</a>
 		<p>No Account? <a href="/register">Register</a></p>
 	</body>
 </html>
@@ -39,5 +42,11 @@
 	function changeaction() {
 		const category = document.getElementById("category").value;
 		document.getElementById("login").action = "/" + category + "/login";
+		var answer=document.getElementById('category').value;
+				if (answer == "user") { 
+ 					 document.getElementById('googlebutton').style.display = "block";
+				} else{
+ 					 document.getElementById('googlebutton').style.display = "none";
+				}
 	}
 </script>

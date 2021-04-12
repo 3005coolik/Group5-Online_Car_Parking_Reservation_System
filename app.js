@@ -14,6 +14,10 @@ const ownerControllers = require("./controllers/ownerControllers");
 
 
 const app = express();
+
+//middleware for google oauth
+app.use(passport.initialize())
+
 app.use(cookieParser());
 
 // Passport Config
