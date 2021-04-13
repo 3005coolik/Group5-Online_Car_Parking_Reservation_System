@@ -1,0 +1,397 @@
+/*
+colours:
+#faeff8: pinkish white
+#b80f0a
+#a91b0d
+alternate background: https://media.istockphoto.com/vectors/infected-woman-in-a-hospital-vector-id1216231411?k=6&m=1216231411&s=612x612&w=0&h=avxSgApVMEwcGshamXU22VVTOgPqHTxk1sbof6uzAjA=
+*/
+
+html
+{
+    
+    color: #5b6060;
+    font-family: 'Lato','Arial',sans-serif;
+    font-weight: 300;
+    font-size: 20px;
+    text-rendering: optimizeLegibility;
+    
+        
+}
+
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Numans');
+
+#main{
+background-color:#faeff8;
+background-size: cover;
+background-repeat: no-repeat;
+height: 100%;
+font-family: 'Numans', sans-serif;
+background-size: 100% 60%;
+  
+    
+}
+.navbar
+{
+    background-color: #fe8118;
+    
+}
+
+.fa-car
+{
+    font-size: 50px;
+    color: #000000 !important;
+    transition: 0.3s;
+    animation-name: onloadAnim;
+    animation-duration: 1s;
+}
+.fa-car:hover
+{
+    color: #ffffff !important;
+}
+
+.navbar-nav {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+    display: inline;
+    
+  /*background-color: #333333;*/
+}
+
+.nav-item {
+  float: right;
+    
+}
+
+.nav-item {
+  display: block;
+  text-align: center;
+  padding-right: 30px;
+  text-decoration: none;
+  
+}
+.nav-link
+{
+    color: #000000 !important;
+     transition: 0.3s;
+    animation-name: onloadAnim;
+    animation-duration: 1s;
+}
+.nav-link:hover
+{
+ color: #ffffff !important;
+
+}
+
+.box
+{
+    height: 50px;
+    width: 110px;
+    position: relative;
+    border-radius: 10px;
+    transition: 0.3s;
+    animation-name: onloadAnim;
+    animation-duration: 1s;
+    border:none;
+   /* margin-top: 1px;
+    padding-top: 2px;*/
+   
+}
+.box:hover
+{
+    background: #ffffff;
+    box-shadow:0 12.5px 10px rgba(0, 0, 0, 0.06);
+}
+ /* Split the screen in half 
+.split {
+  height: 100%;
+  width: 50%;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  overflow-x: hidden;
+  padding-top: 20px;
+}*/
+
+/*******************************************************LOGIN PAGE*******************************************************************/
+
+#loginpage
+{
+   
+height: 100%;
+    
+    background: url("img/bg3.png");
+    background-blend-mode: darken;
+     background-size:cover;
+    background-repeat: no-repeat;
+   
+      background-position: top;
+  background-color: rgba(10, 9, 9, 0.38);
+    
+}
+
+.login-box
+{
+
+    width: 1400px;
+	height: 700px;
+	position: relative;
+    left: 14%;
+    top:60px;
+	background: rgba(149, 141, 141, 0.81);
+    box-shadow:  0 12.5px 10px rgba(0, 0, 0, 0.06);
+
+    border-radius: 20px;
+
+}
+#bigLeftBox {
+ 
+    height: 700px;
+    width:50%;
+    background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url("img/bg2.jpg");
+    background-size: cover;
+    background-position: center;
+    background-blend-mode: darken;
+    float:left;
+    border-radius: 20px 0px 0px 20px ;
+}
+#bigRightBox {
+   
+    height: 700px;
+    width:50%;
+   
+    float:right;
+}
+
+
+
+h1{
+    margin-right: 45px;
+    margin-top:10px;
+    padding: 0 10px 40px;
+    text-align: left;
+    font-size: 26px;
+    color:aliceblue;
+}
+.loginbox
+{
+    margin-top: 15%;
+    margin-left: 10%;
+    padding-left:6%;
+    width:600px;
+    height:400px;
+    border: 0px solid #fff;
+    border-radius: 15px;
+}
+
+.loginbox p{
+    margin: 0;
+    padding: 0;
+    font-weight: bold;
+    color: #fff;
+}
+
+.loginbox input{
+    width: 90%;
+    margin-bottom: 20px;
+    
+}
+.inp
+{
+    color:#fff;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.loginbox input[type="text"], input[type="password"], input[type="name"], input[type="contact"]
+{
+    border: none;
+    border-bottom: 2px solid #fff;
+    background: transparent;
+    outline: none;
+    height: 40px;
+    color: #fff;
+    font-size: 20px;
+}
+.loginbox input[type="email"]
+{
+  border: none;
+    border-bottom: 2px solid #fff;
+    background: transparent;
+    outline: none;
+    height: 40px;
+    color: #fff;
+    font-size: 20px;
+}
+
+#category
+{
+    margin-top: 10px;
+    margin-bottom: 20px;
+    width: 90%;
+    height: 40px;
+    background: rgba(255, 255, 255, 0);
+    color: #fff;
+    font-weight: 5px;
+    border: none;
+    border-bottom: 2px solid;
+    
+}
+.l1
+{
+    color: #000 !important;
+}
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: #fff;
+  opacity: 0.7; /* Firefox */
+}
+.loginbox input[type="submit"]
+{
+    border: none;
+    outline: none;
+    height: 50px;
+    background: #fe8118;
+    color: #fff;
+    font-weight: bold;
+    font-size: 22px;
+    border-radius: 5px;
+    transition: 0.3s;
+    margin-top: 50px;
+    animation-name: onloadAnim;
+    animation-duration: 1s;
+     box-shadow:  0 12.5px 10px rgba(0, 0, 0, 0.06);
+}
+.loginbox input[type="submit"]:hover
+{
+    cursor: pointer;
+    background: #ffffff;
+    color: #000;
+}
+
+.box1
+{
+    height: 50px;
+    width: 110px;
+    position: relative;
+    border-radius: 10px;
+    background-color: #fff;
+    
+}
+.nl1:hover
+{
+    color: #000 !important;
+}
+.nl2:hover
+{
+    color: #000 !important;
+}
+
+
+
+.google-btn {
+  width: 200px;
+  height: 42px;
+  background-color: #4285f4;
+  border-radius: 2px;
+  box-shadow: 0 3px 4px 0 rgba(0,0,0,.25);
+  display: inline;
+  margin-bottom: -30px;
+  float:right;
+}
+  .google-icon-wrapper {
+    position: absolute;
+    margin-top: 1px;
+    margin-left: 1px;
+    width: 40px;
+    height: 40px;
+    border-radius: 2px;
+    background-color:#fff;
+   
+  }
+  .google-icon {
+    position: absolute;
+    margin-top: 11px;
+    margin-left: 11px;
+    width: 18px;
+    height: 18px;
+  }
+  .btn-text a {
+    margin: 1px 11px 0 0;
+    color: #fff !important;
+    font-size: 14px;
+    letter-spacing: 0.2px;
+    font-family: "Roboto";
+    float: right;
+  }
+
+  .google-btn:hover {
+    box-shadow: 0 0 6px #4285f4;
+  }
+  .google-btn:active {
+    background: #1669F2;
+  }
+}
+
+
+/************************************************************************SIGNUP PAGE***********************************************/
+/* contents copied from login page*/
+#signup-page
+{
+   
+height: 100%;
+    
+    background: url("img/bg3.png");
+    background-blend-mode: darken;
+     background-size:cover;
+    background-repeat: no-repeat;
+   
+      background-position: top;
+  background-color: rgba(10, 9, 9, 0.38);
+    
+}
+.signupbox
+{
+    margin-top: 10%;
+    margin-left: 10%;
+    padding-left:6%;
+    width:600px;
+    height:400px;
+    border: 0px solid #fff;
+    border-radius: 15px;
+}
+.signupbox h1{
+    margin-bottom: 25px;
+}
+
+.title{
+    font-size: 25px;
+    padding:0px;
+}
+.signupbox input
+{
+   margin-top:-1px;
+    
+}
+.signupbox input[type="password"], input[type="contact"]
+{
+   width:80%;
+   display: inline-block;
+}
+.signupbox #category
+{
+    margin-top: -1px;
+    width: 80%;
+
+}
+.inpt
+{
+    color:#fff;
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: -1px;
+    margin-top:-1px;
+    
+}
