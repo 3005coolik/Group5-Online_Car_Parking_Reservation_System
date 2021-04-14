@@ -74,59 +74,70 @@ router.get('/:id/:p_id',async(req,res)=>{
 
 // Post request for date and time entry
 router.post('/:id/:p_id',async(req,res)=>{
-    //console.log(req.body)
-    var newStartTime=req.body.starttime;
-    var newEndTime=newStartTime+req.body.dur;
 
-    var UndesiredSlots = await BookedSlots.find()
-        .where('location').eq(req.params.p_id)
-        .where('vehicletype').eq(req.body.vtype)
-        .where('startTime').lt(newEndTime)
-        .where('endTime').gt(newStartTime)
-        .exec();
+    console.log(req.body)
+    
+    var newStartTime=req.body.starttime;
+    var startDate= req.body.startdate;
+    var startTime= req.body.starttime;
+    var start_book= new Date(startDate+"T"+startTime+"Z");
+    newStartTime=start_book;
+    var duration= req.body.dur;
+    var newEndTime=new Date(start_book.getTime()+duration*60000);
+    
+    var UndesiredSlots = await BookedSlots.find({"starttime": {"$lt": newEndTime},"endtime": {"$gt": newStartTime}, "location":req.params.p_id,"vehicletype":req.body.vtype})
+        
     UndesiredSlots= UndesiredSlots.map((slot)=>{
         return slot.slotnumber;
     });
-    req.app.set('UndesiredSlots', UndesiredSlots);
-    req.app.set('vtype',{type:req.body.vtype});
-    res.redirect(`/user/${req.params.id}/${req.params.p_id}/choose_slots`);    
-})
-
-// Get choosing slots form
-router.get('/:id/:p_id/choose_slots',async(req,res)=> {
-    
-    const vtype= req.app.get('vtype');
-    const Unavailable= req.app.get('UndesiredSlots');
+    var number;
+    const vtype= req.body.vtype;
     const curslot = await ParkingLocation.findById(req.params.p_id);
-    var number,price;
     if(vtype.type==="two")
     {
         number=curslot.slot2w;
-        price= curslot.price2w;
     }
     else
     {
         number=curslot.slot4w;
-        price=curslot.price4w;
     }
-    res.render('../views/choose_slots',{Unavailable,price,number,parking_id:req.params.p_id,user_id:req.params.id});
-});
-
-// Post request for choosing slots
-router.post('/:id/:p_id/choose_slots', async(req,res)=> {
-    console.log(req.body)
-    const Slots = new BookedSlot({
-        // location: await ParkingLocation.findById(req.params.p_id).location,
-    }) ;
-
-    Slots.save()
-        .then((result) =>{
-            res.send(result)
-        })
-        .catch((err) => {
-            console.log(err);
-        });
+    var slotno=-1;
+    for(var i = 1; i <= number; i++) {
+        if(UndesiredSlots.includes(i)) {
+            continue;
+        }
+        else{
+            slotno=i;
+            break;
+        }
+    }
+    
+    if(slotno==-1)
+    {
+        res.redirect(`/user/${req.params.id}/${req.params.p_id}`);
+    }
+    else{
+        req.app.set('slotno',slotno);
+        const Slots = new BookedSlots({
+            location:req.params.p_id,
+            slotnumber:slotno,
+            starttime:newStartTime,
+            endtime:newEndTime,
+            vehiclenumber:req.body.vno,
+            vehicletype:req.body.vtype,
+            user:req.params.id
+        }) ;
+        await Slots.save()
+        res.redirect(`/user/${req.params.id}/${req.params.p_id}/payment`);
+    }
+        
 })
+
+router.get('/:id/:p_id/payment',async(req,res)=> {
+
+    res.render('../views/payment',{slotno:req.app.get('slotno')});
+})
+
 
 
 
