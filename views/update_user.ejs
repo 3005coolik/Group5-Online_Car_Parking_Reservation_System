@@ -138,21 +138,24 @@ Things related to the page (actual)
 Things related to the page (actual)
 v
 */
-#update-user{
-   height: 100%;
-	   
-	   background-image: url("img/bg3.png");
-
-		background-size:auto;
-	   background-repeat: no-repeat;
-	  
-		 background-position: top;
-	 background-color: rgba(165, 93, 93, 0.38);	   
+#update-user
+{
+   
+height: 100%;
+    
+    background: url("bg3.png");
+    background-blend-mode: darken;
+     background-size:cover;
+    background-repeat: no-repeat;
+   
+      background-position: top;
+  background-color: rgba(10, 9, 9, 0.38);
+    
 }
 .loginbox
 {
 	width: 700px;
-	height: 300px;
+	height: 500px;
 	position: relative;
     left: 30%;
     top: 200px;
@@ -161,19 +164,19 @@ v
 
     border-radius: 20px;
 }  
-#bigRightBox {
+#bigRightupdateBox {
    
-  
-	
-  
    float:center;
 } 
-.inp
-{
-    color:rgb(3, 3, 3);
-    font-size: 22px;
-    font-weight: bold;
-}
+				.inpt
+				{
+					color:#fff;
+					font-size: 22px;
+					font-weight: bold;
+					margin-bottom: -1px;
+					margin-top:-1px;
+					
+				}
 
 .loginbox input[type="text"], input[type="password"], input[type="name"], input[type="contact"]
 {
@@ -239,12 +242,12 @@ v
  <!--djadjhfjhdsjfhjhfjkdsfjkdsfkjdsfbhfdksjhfkjsdfkjdshfjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj-->
  <!--djadjhfjhdsjfhjhfjkdsfjkdsfkjdsfbhfdksjhfkjsdfkjdshfjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj-->
 		  
- 	<div id="bigRightBox">
+ 	<div id="bigRightupdateBox">
 		  <div class="loginbox">
-			<h1>Update your Account</h1>
+			<h1>Update your Account</h1><br>
 			<form action="/user/<%=user._id%>/update-user"id="update_user" method="POST">
 				<input type="hidden" name="id" value="<%=user._id%>">
-				<label for="name" class = "inp">Updated Name</label>
+				<label for="name" class = "inpt">Updated Name</label><br>
 			<input
 				type="name"
 				id="name"
@@ -253,7 +256,7 @@ v
                 value="<%=user.name%>"
 				required
 			/><br>
-			<label for="email" class = "inp">Updated Email</label>
+			<label for="email" class = "inpt">Updated Email</label><br>
 			<input
 				type="email"
 				id="email"
@@ -262,7 +265,7 @@ v
                 value="<%=user.email%>"
 				required
 			/><br>
-			<label for="contact" class = "inp">Updated Contact No.</label>
+			<label for="contact" class = "inpt">Updated Contact No.</label><br>
 			<input
 				type="contact"
 				id="contact"
@@ -271,7 +274,7 @@ v
                 value="<%=user.contact%>"
 				required
 			/><br>
-			<label for="password" class = "inp">Updated Password</label>
+			<label for="password" class = "inpt">Updated Password</label><br>
 			<input
 				type="password"
 				id="password"

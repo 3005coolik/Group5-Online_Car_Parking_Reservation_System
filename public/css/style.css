@@ -118,7 +118,7 @@ background-size: 100% 60%;
 
 /*******************************************************LOGIN PAGE*******************************************************************/
 
-#loginpage
+#loginpage, #signup-page
 {
    
 height: 100%;
@@ -289,6 +289,11 @@ h1{
     color: #000 !important;
 }
 
+.al0
+{
+  display: inline-block;
+  vertical-align: middle;
+}
 
 
 .google-btn {
@@ -297,9 +302,12 @@ h1{
   background-color: #4285f4;
   border-radius: 2px;
   box-shadow: 0 3px 4px 0 rgba(0,0,0,.25);
-  display: inline;
+  display: inline-block;
+  vertical-align: middle;
   margin-bottom: -30px;
-  float:right;
+  margin-top: 5px;
+  margin-right:55px;
+  float: right;
 }
   .google-icon-wrapper {
     position: absolute;
@@ -395,8 +403,11 @@ height: 100%;
     margin-top:-1px;
     
 }
-
-#update-user
+.al3
 {
-  background-color: blue;
+  display: inline-block;
+  vertical-align: middle;
+  margin-top: 10px !important;
 }
+
+

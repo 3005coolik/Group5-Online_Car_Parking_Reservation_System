@@ -13,14 +13,189 @@
 		<!-- Material Design Bootstrap -->
 		<link rel="stylesheet" href="css/mdb.min.css">
 		<!-- Your custom styles (optional) -->
-		<link rel="stylesheet" href="css/style.css">
+		
+		<style>
+			
+			 
+			html
+			{
+				
+				color: #5b6060;
+				font-family: 'Lato','Arial',sans-serif;
+				font-weight: 300;
+				font-size: 20px;
+				text-rendering: optimizeLegibility;
+				
+					
+			}
+			
+			
+			@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+			@import url('https://fonts.googleapis.com/css?family=Numans');
+			
+			#main{
+			background-color:#faeff8;
+			background-size: cover;
+			background-repeat: no-repeat;
+			height: 100%;
+			font-family: 'Numans', sans-serif;
+			background-size: 100% 60%;
+			  
+				
+			}
+			.navbar
+			{
+				background-color: #fe8118;
+				
+			}
+			
+			.fa-car
+			{
+				font-size: 50px;
+				color: #000000 !important;
+				transition: 0.3s;
+				animation-name: onloadAnim;
+				animation-duration: 1s;
+			}
+			.fa-car:hover
+			{
+				color: #ffffff !important;
+			}
+			
+			.navbar-nav {
+			  list-style-type: none;
+			  margin: 0;
+			  padding: 0;
+			  overflow: hidden;
+				display: inline;
+				
+			  /*background-color: #333333;*/
+			}
+			
+			.nav-item {
+			  float: right;
+				
+			}
+			
+			.nav-item {
+			  display: block;
+			  text-align: center;
+			  padding-right: 30px;
+			  text-decoration: none;
+			  
+			}
+			.nav-link
+			{
+				color: #000000 !important;
+				 transition: 0.3s;
+				animation-name: onloadAnim;
+				animation-duration: 1s;
+			}
+			.nav-link:hover
+			{
+			 color: #ffffff !important;
+			
+			}
+			
+			.box
+			{
+				height: 50px;
+				width: 110px;
+				position: relative;
+				border-radius: 10px;
+				transition: 0.3s;
+				animation-name: onloadAnim;
+				animation-duration: 1s;
+				border:none;
+			   /* margin-top: 1px;
+				padding-top: 2px;*/
+			   
+			}
+			.box:hover
+			{
+				background: #ffffff;
+				box-shadow:0 12.5px 10px rgba(0, 0, 0, 0.06);
+			}
+			/*
+			Things related to the page (actual)
+			Things related to the page (actual)
+			Things related to the page (actual)
+			Things related to the page (actual)
+			Things related to the page (actual)
+			Things related to the page (actual)
+			Things related to the page (actual)
+			*/
+			body{
+				height: 100%;
+				background: url("/css/img/bg3.png");
+				background-blend-mode: darken;
+				background-size:cover;
+				background-repeat: no-repeat;
+				background-position: top;
+				background-color: rgba(10, 9, 9, 0.38);
+			}
+					
+			.loginbox
+			{
+				width: 700px;
+				height: 500px;
+				position: relative;
+				left: 30%;
+				top: 200px;
+				background: rgba(149, 141, 141, 0.81);
+				box-shadow:  0 12.5px 10px rgba(0, 0, 0, 0.06);
+			
+				border-radius: 20px;
+			}  
+			#bigRightupdateBox {
+			   
+			   float:center;
+			} 
+			.inpt
+				{
+					color:#fff;
+					font-size: 22px;
+					font-weight: bold;
+					margin-bottom: -1px;
+					margin-top:-1px;
+					margin-left:50px;
+				}
+				#email, #name, #password, #contact, #update {
+					margin-left:50px;
+				}
+			
+			.loginbox input[type="text"], input[type="password"], input[type="name"], input[type="contact"], input[type="email"]
+			{
+				border: none;
+				border-bottom: 2px solid #fff;
+				background: transparent;
+				outline: none;
+				height: 40px;
+				width: 60%;
+				color: rgb(0, 0, 0);
+				font-size: 20px;
+			}
+			
+			</style>
 		<title>Update Owner</title>
 	</head>
 
-	<body id="update_owner">
+	<body>
+
+		<nav class="navbar sticky-top shadow p-2 mb-2">
+			<a class="navbar-brand" href="index.html"><i class="fas fa-car"></i></a>
+			<ul class="navbar-nav">
+				<li class="nav-item">
+				  <a class="nav-link" href="/users/logout" style="color:black; font-size:120%;"><b>Log Out</b></a>
+				</li>
+				 </ul>
+		  </nav>
+		<div id="bigRightupdateBox">
+		<div class="loginbox">
+			<h1>Update Your Account</h1><br>
 		<form action='/owner/<%=user._id%>/update-owner'id="update_owner" method="POST">
 			<input type="hidden" name="id" value="<%=user._id%>">
-			<label for="name">Name</label>
+			<label class= "inpt" for="name">Name</label><br>
 			<input
 				type="name"
 				id="name"
@@ -28,8 +203,8 @@
 				placeholder="Enter Name"
                 value="<%=user.name%>"
 				required
-			/>
-			<label for="email">Email</label>
+			/><br>
+			<label class= "inpt" for="email">Email</label><br>
 			<input
 				type="email"
 				id="email"
@@ -37,8 +212,8 @@
 				placeholder="Enter Email"
                 value="<%=user.email%>"
 				required
-			/>
-			<label for="contact">Contact No.</label>
+			/><br>
+			<label class= "inpt" for="contact">Contact No.</label><br>
 			<input
 				type="contact"
 				id="contact"
@@ -46,18 +221,19 @@
 				placeholder="Enter Phone No."
                 value="<%=user.contact%>"
 				required
-			/>
-			<label for="password">Password</label>
+			/><br>
+			<label class= "inpt" for="password">Password</label><br>
 			<input
 				type="password"
 				id="password"
 				name="password"
 				placeholder="Create Password"
 				required
-			/>
-			<button type="submit">Update</button>
+			/><br><br>
+			<button id = "update" type="submit">Update</button>
 		</form>
-		 
+	</div>
+</div>	
 		</script>
 	</body>
 </html>
