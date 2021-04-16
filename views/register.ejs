@@ -1,60 +1,137 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Register</title>
-	</head>
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-	<body>
-		<form action="/register" method="POST">
-			<label for="category">Category</label>
-			<select name="category" id="category">
-				<option value="user">User</option>
-				<option value="owner">Parking Owner</option>
-			</select>
-			<label for="name">Name</label>
-			<input
-				type="name"
-				id="name"
-				name="name"
-				placeholder="Enter Name"
-				required
-			/>
-			<label for="email">Email</label>
-			<input
-				type="email"
-				id="email"
-				name="email"
-				placeholder="Enter Email"
-				required
-			/>
-			<label for="contact">Contact No.</label>
-			<input
-				type="contact"
-				id="contact"
-				name="contact"
-				placeholder="Enter Phone No."
-				required
-			/>
-			<label for="password">Password</label>
-			<input
-				type="password"
-				id="password"
-				name="password"
-				placeholder="Create Password"
-				required
-			/>
-			<label for="password2">Confirm Password</label>
-			<input
-				type="password"
-				id="password2"
-				name="password2"
-				placeholder="Confirm Password"
-				required
-			/>
-			<button type="submit">Register</button>
-		</form>
-		<p>Have An Account? <a href="/login">Login</a></p>
-	</body>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <!-- Google Fonts Roboto -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <!-- Material Design Bootstrap -->
+  <link rel="stylesheet" href="css/mdb.min.css">
+  <!-- Your custom styles (optional) -->
+  <link rel="stylesheet" href="css/style.css">
+    <title>Register</title>
+      
+
+
+  </head>
+  
+  <body id="signup-page">
+      
+      <nav class="navbar sticky-top">
+  <a class="navbar-brand" href="index.html"><i class="fas fa-car"></i></a>
+  <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" href="#" style="color:black; font-size:120%;"><b>Contact us</b></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#" style="color:black; font-size:120%;"><b>About us</b></a>
+      </li>
+      <li class="nav-item">
+          <div class="box">
+        <a class="nav-link nl1" href="/login" style="color:black; font-size:120%;"><b>Login</b></a>
+          </div>
+      </li>
+            <li class="nav-item">
+            <div class="box box1">
+        <a class="nav-link nl2" href="/register" style="color:black; font-size:120%;"><b>Sign up</b></a>
+                </div>
+      </li>
+       </ul>
+</nav>
+
+
+ <div class="login-box">
+  
+     <div id="bigLeftBox">
+          <h2 style="color:#fff; font-size: 60px; margin:50px 50px; font-weight: 500; text-shadow: 2px 2px 4px #000000;"> Welcome to 
+             <br> PyP: Plan your Park
+         </h2>
+    </div>
+     
+<div id="bigRightBox">
+     <div class="loginbox signupbox">
+       <h1 class="title">Sign up your Account</h1>
+        <form action="/register" method="POST">
+          <label for="name" class="inpt">Name</label>
+          <input
+            type="name"
+            id="name"
+            name="name"
+            placeholder="Enter Name"
+            required
+          /><label for="email" class="inpt">Email</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+			class="email"
+            placeholder="Enter Email"
+            required
+          />
+		  <div class="form-row">
+			<div class="form-group col-md-6">
+          <label for="contact" class="inpt">Contact No.</label>
+          <input
+            type="contact"
+            id="contact"
+            name="contact"
+            placeholder="Enter Phone No."
+            required
+          />
+		  </div>
+		  <div class="form-group col-md-6">
+          <label for="category" class="inpt">Category</label>
+          <select name="category" id="category">
+            <option value="user" class="l1">User</option>
+            <option value="owner" class="l1">Parking Owner</option>
+          </select>
+		</div></div>
+		  <div class="form-row">
+		  <div class="form-group col-md-6">
+          <label for="password" class="inpt">Password</label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            placeholder="Create Password"
+            required
+          />
+		</div>
+		  <div class="form-group col-md-6">
+          <label for="password2" class="inpt">Confirm Password</label>
+          <input
+            type="password"
+            id="password2"
+            name="password2"
+            placeholder="Confirm Password"
+            required
+          /></div></div>
+		  
+            <p style="color:black; font-weight: 400;">Already registered?  <a class="al1" style="color:white;" href="/login">Login here</a></p>
+           
+            <input type="submit" value="Sign Up"/>
+            
+        </form>
+        </div>
+	            </div>
+      </div>
+      
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+      <script src="https://kit.fontawesome.com/4077c6ef6a.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+         
+      
+  </body>
 </html>
