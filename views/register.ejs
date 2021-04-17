@@ -9,7 +9,7 @@
 	<body>
 		<form action="/register" method="POST">
 			<label for="category">Category</label>
-			<select name="category" id="category">
+			<select name="category" id="category" onchange="displaybutton()">
 				<option value="user">User</option>
 				<option value="owner">Parking Owner</option>
 			</select>
@@ -55,6 +55,19 @@
 			/>
 			<button type="submit">Register</button>
 		</form>
+		<a id="googlebutton" href="/auth/google" class="btn red darken-1">
+			<i class="fab fa-google left"></i>Log in with google 
+		</a>
 		<p>Have An Account? <a href="/login">Login</a></p>
+		<script>
+			function displaybutton() {
+				var answer=document.getElementById('category').value;
+				if (answer == "user") { 
+ 					 document.getElementById('googlebutton').style.display = "block";
+				} else{
+ 					 document.getElementById('googlebutton').style.display = "none";
+				}
+			}
+		</script>
 	</body>
 </html>
