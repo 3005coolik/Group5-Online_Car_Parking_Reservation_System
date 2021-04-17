@@ -11,20 +11,20 @@ const bookedslotSchema = new Schema({
         required: true
     },
     starttime:{
-        type:Number, 
+        type:Date, 
         required: true
     },
     endtime:{
-        type:Number,
+        type:Date,
         required: true
     },
     vehiclenumber:{
         type:String,
-        required: false
+        required: true
     },
     vehicletype: {
         type:String,
-        required: false
+        required: true
     },
     user:{
         type:Schema.Types.ObjectId,

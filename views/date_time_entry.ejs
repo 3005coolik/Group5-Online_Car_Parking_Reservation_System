@@ -7,18 +7,29 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     
     <body>
-    <form method="post" action="/user/<%=user_id%>/<%=parking._id%>" >
-    <label>Date of Booking : </label>
+    <form method="post" action="/user/<%=user_id%>/<%=parking_id%>" >
+    <label for="startdate">Date of Booking : </label>
     <input name="startdate" type="date" id="txtDate" /> 
     <br>
     <br>
-    <label>Start From</label>
+    <label for="starttime">Start From</label>
     <input name="starttime" type="time" id="time" />
     <br>
     <br>
-    <label>Duration of Booking</label>
+    <label for="dur">Duration of Booking</label>
     <input name="dur" type="number" id="duration" />
     <label>(in minutes)</label> 
+    <br>
+    <br>
+    <label>Vehicle Type</label>
+    <select name="vtype">
+        <option value="two">2 Wheeler</option>
+        <option value="four">4 Wheeler</option>
+    </select>
+    <br>
+    <br>
+    <label for="vno">Vehicle Number</label>
+    <input name="vno" type="text" id="vnumber" />
     <br>
     <br>
     <input type="submit" id="submit" value="Next" />

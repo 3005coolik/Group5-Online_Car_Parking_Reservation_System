@@ -76,16 +76,7 @@
 			
 			<p class= "al0" style="color:black; font-weight: 400; margin-top: 10px">New user?  	
           <a class="al1" style="color:white;" href="/register">Signup here</a></p>
-<!--
-		  <div class="google-btn">
-		  <a id="googlebutton" href="/auth/google" class="btn red darken-1">
-			<div class="google-icon-wrapper">
-				<i class="fab fa-google"></i>
-			  </div>
-			  <p class="btn-text" style="text-align:center;"><b>Log in with google</b></p>
-		</a>
-	</div>
--->
+
 	<div class="google-btn" >
 		
 		<div class="google-icon-wrapper">
@@ -102,21 +93,18 @@
     </div>
 	                </div>
 					<script>
-						function displaybutton() {
+						function changeaction() {
+							const category = document.getElementById("category").value;
+							document.getElementById("login").action = "/" + category + "/login";
 							var answer=document.getElementById('category').value;
-							if (answer == "user") { 
-								  document.getElementById('googlebutton').style.display = "block";
-							} else{
-								  document.getElementById('googlebutton').style.display = "none";
-							}
+									if (answer == "user") { 
+										  document.getElementById('googlebutton').style.display = "block";
+									} else{
+										  document.getElementById('googlebutton').style.display = "none";
+									}
 						}
-					</script>
+					</script>			
+			
 	</body>
 </html>
 
-<script>
-	function changeaction() {
-		const category = document.getElementById("category").value;
-		document.getElementById("login").action = "/" + category + "/login";
-	}
-</script>
