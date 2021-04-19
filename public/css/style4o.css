@@ -1,0 +1,140 @@
+#ownerdash
+{
+    background-color:  #343A40;;
+}
+
+.navbar
+{
+    background-color: none;
+}
+
+.fa-arrow-circle-left
+{
+    color: #000;
+    font-size: 45px;
+    margin-left: 5px;
+    transition: 0.3s;
+    animation-name: onloadAnim;
+    animation-duration: 1s;
+}
+.fa-arrow-circle-left:hover
+{
+    color:#fff;
+}
+.sidenav {
+    height: 100%; /* Full-height: remove this if you want "auto" height */
+    width: 200px; /* Set the width of the sidebar */
+    position: fixed; /* Fixed Sidebar (stay in place on scroll) */
+    z-index: 1; /* Stay on top */
+    top: 0; /* Stay at the top */
+    left: 0;
+    background-color: #fe8118; /* Black */
+    overflow-x: hidden; /* Disable horizontal scroll */
+    padding-top: 80px;
+  }
+  
+  /* The navigation menu links */
+  .sidenav a {
+    padding: 6px 3px 6px 16px;
+    text-decoration: none;
+    font-size: 25px;
+    color: black;
+    display: block;
+    
+  }
+  .lnk
+  {
+      margin-top: 20px;
+      font-weight: bold;
+      transition: 0.3s;
+    animation-name: onloadAnim;
+    animation-duration: 1s;
+  }
+  
+  /* When you mouse over the navigation links, change their color */
+  .lnk:hover {
+      background-color: black;
+      color:white;
+  }
+  
+  /* Style page content */
+  .main {
+    margin-left: 160px; /* Same as the width of the sidebar */
+    padding: 0px 10px;
+  }
+
+  .fa-user-tie
+  {
+      font-size: 120px;
+      margin: 25px 25px 20px 30px;
+      color:black;
+      
+  }
+
+  .useinfo
+  {
+    
+      margin-top: -20px;
+  }
+
+.card
+{
+    margin-left: 300px;
+    display:inline-block;
+    margin-right: -250px;
+}
+.card-title
+{
+    font-size: 30px !important;
+    font-weight: bold;
+}
+.tl
+{
+    margin-left: 250px;
+    margin-top:-20px;
+    margin-bottom:40px;
+    color:white;
+}
+.card-text
+{
+    font-size: 22px;
+    font-weight: 500;
+}
+
+.btn-primary
+{
+    border: none;
+    outline: none;
+    height: 50px;
+    width:180px;
+    background: #fe8118;
+    color: #fff;
+    font-weight: bold;
+    font-size: 22px;
+    border-radius: 5px;
+    transition: 0.3s;
+    margin-top: 10px;
+    margin-left: 30px;
+    animation-name: onloadAnim;
+    animation-duration: 1s;
+     box-shadow:  0 12.5px 10px rgba(0, 0, 0, 0.06);
+     
+}
+.btn-primary:hover
+{
+    cursor: pointer;
+    background: #000;
+    color: #fff;
+}
+
+
+
+
+
+
+  
+  /* On smaller screens, where height is less than 450px, change the style of the sidebar (less padding and a smaller font size) */
+  @media screen and (max-height: 450px) {
+    .sidenav {padding-top: 15px;}
+    .sidenav a {font-size: 18px;}
+  }
