@@ -118,7 +118,7 @@
 		  
             <p class= "al3" style="color:black; font-weight: 400;">Already registered? <a class="al1" style="color:white;" href="/login">Login here</a></p>
 
-            <div class="google-btn" >
+            <div class="google-btn" id="gbtn" >
 		
               <div class="google-icon-wrapper">
                 
@@ -142,15 +142,27 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 		<script>
-      
+      /*
 			function displaybutton() {
 				var answer=document.getElementById('category').value;
 				if (answer == "user") { 
- 					 document.getElementById('googlebutton').style.display = "block";
+ 					 document.getElementById('gbtn').style.display = "block";
 				} else{
- 					 document.getElementById('googlebutton').style.display = "none";
+ 					 document.getElementById('gbtn').style.display = "none";
 				}
-			}
+			}*/
+      function displaybutton() {
+
+							//const category = document.getElementById("category").value;
+							//document.getElementById("register").action = "/" + category + "/register";
+
+							var answer=document.getElementById('category').value;
+									if (answer == "user") { 
+										  document.getElementById('gbtn').style.display = "block";
+									} else{
+										  document.getElementById('gbtn').style.display = "none";
+									}
+						}
 		</script>
 	</body>
 </html>
