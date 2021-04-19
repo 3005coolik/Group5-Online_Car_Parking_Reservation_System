@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking</title>
+</head>
+<body>
+    <% for(var booking of bookings){ %>
+        <h1><%= booking.loc %> </h1>
+        <p><b>SlotNo. </b> <%= booking.slotnumber %>  </p>
+        <p> <b>Start Time</b> <%= booking.starttime %> </p>
+        <p> <b> End Time</b> <%= booking.endtime %> </p>
+        <p> <b> vehicle Number</b> <%= booking.vehiclenumber %> </p>
+    <% } %> 
+</body>
+</html>
