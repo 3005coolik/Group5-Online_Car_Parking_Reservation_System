@@ -26,6 +26,10 @@ const bookedslotSchema = new Schema({
         type:String,
         required: true
     },
+    price:{
+        type: Number,
+        required: true
+    },
     user:{
         type:Schema.Types.ObjectId,
         ref:'user'

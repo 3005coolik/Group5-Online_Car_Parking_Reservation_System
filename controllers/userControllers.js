@@ -83,23 +83,26 @@ router.post('/:id/:p_id',async(req,res)=>{
     var start_book= new Date(startDate+"T"+startTime+"Z");
     newStartTime=start_book;
     var duration= req.body.dur;
-    var newEndTime=new Date(start_book.getTime()+duration*60000);
     
+    var newEndTime=new Date(start_book.getTime()+duration*3600000);
+
     var UndesiredSlots = await BookedSlots.find({"starttime": {"$lt": newEndTime},"endtime": {"$gt": newStartTime}, "location":req.params.p_id,"vehicletype":req.body.vtype})
         
     UndesiredSlots= UndesiredSlots.map((slot)=>{
         return slot.slotnumber;
     });
-    var number;
+    var number,price;
     const vtype= req.body.vtype;
     const curslot = await ParkingLocation.findById(req.params.p_id);
     if(vtype.type==="two")
     {
         number=curslot.slot2w;
+        price=duration*curslot.price2w;
     }
     else
     {
         number=curslot.slot4w;
+        price=duration*curslot.price4w;
     }
     var slotno=-1;
     for(var i = 1; i <= number; i++) {
@@ -118,6 +121,7 @@ router.post('/:id/:p_id',async(req,res)=>{
     }
     else{
         req.app.set('slotno',slotno);
+        req.app.set('price',price);
         const Slots = new BookedSlots({
             location:req.params.p_id,
             slotnumber:slotno,
@@ -125,6 +129,7 @@ router.post('/:id/:p_id',async(req,res)=>{
             endtime:newEndTime,
             vehiclenumber:req.body.vno,
             vehicletype:req.body.vtype,
+            price,
             user:req.params.id
         }) ;
         await Slots.save()
@@ -135,7 +140,7 @@ router.post('/:id/:p_id',async(req,res)=>{
 
 router.get('/:id/:p_id/payment',async(req,res)=> {
 
-    res.render('../views/payment',{slotno:req.app.get('slotno')});
+    res.render('../views/payment',{slotno:req.app.get('slotno'),price:req.app.get('price')});
 })
 
 
