@@ -20,13 +20,13 @@
 
 	<body>
 		<nav class="navbar sticky-top shadow p-2 mb-2">
-            <a class="navbar-brand" href="/login"><i class="fas fa-arrow-circle-left"></i></a>
+            <a class="navbar-brand" href="/user/<%=user._id%>/update-owner"><i class="fas fa-arrow-circle-left"></i></a>
 			</nav>
 
 			<div class="updatebox">
 				<div id="bigLeftBox">
 					<div class="upbox">
-		<form action="/user/<%=user._id%>/update-owner"id="update_owner" method="POST">
+		<form action="/owner/<%=user._id%>/update-owner"id="update_owner" method="POST">
 			<input type="hidden" name="id" value="<%=user._id%>">
 			<label for="name" class="inp">Name</label>
 			<br>
