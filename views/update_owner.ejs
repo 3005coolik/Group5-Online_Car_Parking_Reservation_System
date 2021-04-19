@@ -1,15 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+			<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+			   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+			 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+			<!-- Google Fonts Roboto -->
+			<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+			<!-- Bootstrap core CSS -->
+			<link rel="stylesheet" href="/css/bootstrap.min.css">
+			<!-- Material Design Bootstrap -->
+			<link rel="stylesheet" href="/css/mdb.min.css">
+			<!-- Your custom styles (optional) -->
+			<link rel="stylesheet" href="/css/style2.css">
 		<title>Update Owner</title>
 	</head>
 
 	<body>
-		<form action='/owner/<%=user._id%>/update-owner'id="update_owner" method="POST">
+		<nav class="navbar sticky-top shadow p-2 mb-2">
+            <a class="navbar-brand" href="/user/<%=user._id%>/update-owner"><i class="fas fa-arrow-circle-left"></i></a>
+			</nav>
+
+			<div class="updatebox">
+				<div id="bigLeftBox">
+					<div class="upbox">
+		<form action="/owner/<%=user._id%>/update-owner"id="update_owner" method="POST">
 			<input type="hidden" name="id" value="<%=user._id%>">
-			<label for="name">Name</label>
+			<label for="name" class="inp">Name</label>
+			<br>
 			<input
 				type="name"
 				id="name"
@@ -18,7 +38,10 @@
                 value="<%=user.name%>"
 				required
 			/>
-			<label for="email">Email</label>
+			<br>
+			<br>
+			<label for="email" class="inp">Email</label>
+			<br>
 			<input
 				type="email"
 				id="email"
@@ -27,7 +50,10 @@
                 value="<%=user.email%>"
 				required
 			/>
-			<label for="contact">Contact No.</label>
+			<br>
+			<br>
+			<label for="contact" class="inp">Contact No.</label>
+			<br>
 			<input
 				type="contact"
 				id="contact"
@@ -36,7 +62,10 @@
                 value="<%=user.contact%>"
 				required
 			/>
-			<label for="password">Password</label>
+			<br>
+			<br>
+			<label for="password" class="inp">Password</label>
+			<br>
 			<input
 				type="password"
 				id="password"
@@ -44,9 +73,22 @@
 				placeholder="Create Password"
 				required
 			/>
-			<button type="submit">Update</button>
+			<br>
+			<br>
+			<input type="submit" value="Update"/>
 		</form>
-		 
-		</script>
+		</div>
+		</div>
+		<div id="bigRightBox">
+			
+	   </div>
+	   </div>
+	 
+	
 	</body>
+	<script src="/javascripts/clusterMap.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </html>
+

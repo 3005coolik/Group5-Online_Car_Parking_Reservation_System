@@ -1,44 +1,115 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+   		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+     	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+		<!-- Google Fonts Roboto -->
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+		<!-- Bootstrap core CSS -->
+		<link rel="stylesheet" href="/css/bootstrap.min.css">
+		<!-- Material Design Bootstrap -->
+		<link rel="stylesheet" href="/css/mdb.min.css">
+		<!-- Your custom styles (optional) -->
+		<link rel="stylesheet" href="/css/style3.css">
         <title> Date_Time </title>
     </head>
     
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     
-    <body>
-    <form method="post" action="/user/<%=user_id%>/<%=parking_id%>" >
-    <label for="startdate">Date of Booking : </label>
-    <input name="startdate" type="date" id="txtDate" /> 
+    <body id="entrypage">
+
+        <nav class="navbar sticky-top shadow p-2 mb-2">
+            <a class="navbar-brand" href="/user/<%=user_id%>"><i class="fas fa-arrow-circle-left"></i></a>
+            <ul class="nabar">
+                <li>
+    <i class="fas fa-user-circle"></i>
+                    <ul style="list-style-type:none;">
+                      <li>
+                        <a href="/user/<%=user_id%>/update-user">Update User</a>
+                      </li>
+                      <li>
+                        <a href="/user/<%=user_id%>/update-user">View Parking</a>
+                      </li>
+                      <li>
+                        <a href="/users/logout">Logout</a>
+                      </li>
+                    </ul>
+                  </li>
+            </ul>
+          </nav>
+
+        <form method="post" action="/user/<%=user_id%>/<%=parking_id%>" >
+        <div class="row">
+            
+            <div class="col">
+                <h4 class="det" >ENTER THE DETAILS</h4>
+                <label for="startdate" class="tle">Date of Booking : </label>
+                <br>
+                <input name="startdate" type="date" id="txtDate" />
+                 
+                 <!-- <div class="qty mt-5">
+              <label for="dur" class="tle">Duration of Booking (in hr):</label>
+                <br>
+                    <span class="minus bg-dark">-</span>
+                    <input type="number" class="count" id="duration" name="dur">
+                    <span class="plus bg-dark">+</span>
+                </div>-->
+                <br>
+                <br>
+                <label for="dur" class="tle">Duration of Booking (in hr):</label>
+                <br>
+                <input name="dur" type="number" id="duration" />
+                <br>
+                <br>
+                <label for="vno" class="tle">Vehicle Number :</label>
+                <br>
+                <input name="vno" type="text" id="vnumber" />
+                <br>
+                <br> 
+                
+            </div>
+            <div class="col clm1">
+                <label for="starttime" class="tle">Start From :</label>
+                <br>
+                <input name="starttime" type="time" id="time" />
+                <br>
+                <br> 
+                <br>
+                <label class="tle">Vehicle Type :</label>
+                <br>
+                <select name="vtype" class="category">
+                    <option value="two" class="li">2 Wheeler</option>
+                    <option value="four" class="li">4 Wheeler</option>
+                </select>
+                <br>
+                <br> 
+                <input type="submit" id="submit" value="Proceed to payment" />
+                <br>
+                <br> 
+            </div>
+            <div class="col-5">
+             <div class="rect"><img src="/css/img/5556.png" class="bimg"></div>
+
+            </div>
+          </div>
+        </div>
+
+    
+    
     <br>
     <br>
-    <label for="starttime">Start From</label>
-    <input name="starttime" type="time" id="time" />
-    <br>
-    <br>
-    <label for="dur">Duration of Booking</label>
-    <input name="dur" type="number" id="duration" />
-    <label>(in minutes)</label> 
-    <br>
-    <br>
-    <label>Vehicle Type</label>
-    <select name="vtype">
-        <option value="two">2 Wheeler</option>
-        <option value="four">4 Wheeler</option>
-    </select>
-    <br>
-    <br>
-    <label for="vno">Vehicle Number</label>
-    <input name="vno" type="text" id="vnumber" />
-    <br>
-    <br>
-    <input type="submit" id="submit" value="Next" />
+    
+    
     </form>
     </body>
 
     <script> 
-        document.getElementById("duration").min = 30 ;
-        document.getElementById("duration").defaultValue = "30";   
+        document.getElementById("duration").min = 1 ;
+        document.getElementById("duration").defaultValue = "1";   
     </script>
     
     <script>
@@ -65,7 +136,14 @@
 
         module.exports = { date , timer ,dur};
     </script>
+
+
     <body>
         
     </body>
+
+    <script src="/javascripts/clusterMap.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </html>
