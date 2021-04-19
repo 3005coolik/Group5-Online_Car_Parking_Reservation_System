@@ -47,13 +47,21 @@
                 <label for="startdate" class="tle">Date of Booking : </label>
                 <br>
                 <input name="startdate" type="date" id="txtDate" />
+                 
+                <div class="qty mt-5">
+                <label for="dur" class="tle">Duration of Booking (in hr):</label>
                 <br>
-                <br> 
-                <label for="dur" class="tle">Duration of Booking (in min):</label>
+                    <span class="minus bg-dark">-</span>
+                    <input type="number" class="count" id="duration" name="dur" value="1">
+                    <span class="plus bg-dark">+</span>
+                </div>
+                <br>
+                <br>
+                <!--<label for="dur" class="tle">Duration of Booking (in min):</label>
                 <br>
                 <input name="dur" type="number" id="duration" />
                 <br>
-                <br> 
+                <br> -->
                 <label for="vno" class="tle">Vehicle Number :</label>
                 <br>
                 <input name="vno" type="text" id="vnumber" />
@@ -67,6 +75,7 @@
                 <input name="starttime" type="time" id="time" />
                 <br>
                 <br> 
+                <br>
                 <label class="tle">Vehicle Type :</label>
                 <br>
                 <select name="vtype" class="category">
@@ -96,8 +105,8 @@
     </body>
 
     <script> 
-        document.getElementById("duration").min = 30 ;
-        document.getElementById("duration").defaultValue = "30";   
+        document.getElementById("duration").min = 1 ;
+        document.getElementById("duration").defaultValue = "1";   
     </script>
     
     <script>
@@ -123,6 +132,21 @@
         var dur = document.getElementById("duration").value;
 
         module.exports = { date , timer ,dur};
+    </script>
+
+    <script>	
+    $(document).ready(function(){
+        $('.count').prop('disabled', true);
+           $(document).on('click','.plus',function(){
+            $('.count').val(parseInt($('.count').val()) + 1 );
+        });
+        $(document).on('click','.minus',function(){
+            $('.count').val(parseInt($('.count').val()) - 1 );
+                if ($('.count').val() == 0) {
+                    $('.count').val(1);
+                }
+            });
+     });
     </script>
     <body>
         
