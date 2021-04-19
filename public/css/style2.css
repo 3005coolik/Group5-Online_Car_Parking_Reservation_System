@@ -1,0 +1,119 @@
+body
+{
+    background-color: #343A40;
+}
+.navbar
+{
+    background-color: none;
+}
+.fa-arrow-circle-left
+{
+    color: #fe8118;
+    font-size: 45px;
+    margin-left: 20px;
+    transition: 0.3s;
+    animation-name: onloadAnim;
+    animation-duration: 1s;
+}
+.fa-arrow-circle-left:hover
+{
+    color:#fff;
+}
+
+.updatebox
+{
+
+    width: 1400px;
+	height: 700px;
+	position: relative;
+    left: 14%;
+    top:30px;
+	background: rgba(149, 141, 141, 0.158);
+    box-shadow:  0 12.5px 10px rgba(0, 0, 0, 0.06);
+
+    border-radius: 20px;
+
+}
+#bigRightBox {
+ 
+    height: 700px;
+    width:50%;
+    background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url("img/bg2.jpg");
+    background-size: cover;
+    background-position: center;
+    background-blend-mode: darken;
+    float:right;
+    border-radius: 0px 20px 20px 0px ;
+}
+#bigLeftBox {
+   
+    height: 700px;
+    width:50%;
+   
+    float:left;
+}
+
+.upbox
+{
+    margin-top: 10%;
+    margin-left: 10%;
+    padding-left:6%;
+    width:600px;
+    height:400px;
+    border: 0px solid #fff;
+    border-radius: 15px;
+}
+
+.upbox p{
+    margin: 0;
+    padding: 0;
+    font-weight: bold;
+    color: #fff;
+}
+
+.upbox input{
+    width: 90%;
+    margin-bottom: 20px;
+    
+}
+.inp
+{
+    color:#fff;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.upbox input[type="text"], input[type="password"], input[type="name"], input[type="email"],input[type="contact"]
+{
+    border: none;
+    border-bottom: 2px solid #fff;
+    background: transparent;
+    outline: none;
+    height: 40px;
+    color: #fff;
+    font-size: 22px;
+}
+
+.upbox input[type="submit"]
+{
+    border: none;
+    outline: none;
+    height: 50px;
+    background: #fe8118;
+    color: #fff;
+    font-weight: bold;
+    font-size: 22px;
+    border-radius: 5px;
+    transition: 0.3s;
+    margin-top: 10px;
+    animation-name: onloadAnim;
+    animation-duration: 1s;
+     box-shadow:  0 12.5px 10px rgba(0, 0, 0, 0.06);
+     
+}
+.upbox input[type="submit"]:hover
+{
+    cursor: pointer;
+    background: #ffffff;
+    color: #000;
+}

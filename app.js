@@ -14,6 +14,10 @@ const ownerControllers = require("./controllers/ownerControllers");
 
 
 const app = express();
+
+//middleware for google oauth
+app.use(passport.initialize())
+
 app.use(cookieParser());
 
 // Passport Config
@@ -27,7 +31,7 @@ const db = process.env.DBURI;
 mongoose
 	.connect(db, { useNewUrlParser: true, useUnifiedTopology: true })
 	.then(() => {
-		const PORT = process.env.PORT || 2000;
+		const PORT = process.env.PORT || 8080;
 		app.listen(PORT, console.log("Server Started"));
 		console.log("Connected to DB");
 	})

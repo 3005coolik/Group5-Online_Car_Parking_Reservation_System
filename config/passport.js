@@ -7,6 +7,9 @@ const ExtractJWT = passportJWT.ExtractJwt;
 const bcryptjs = require("bcryptjs");
 const User = require("../models/Users.js");
 const Owner = require("../models/Owners.js");
+const axios=require('axios');
+const GoogleStrategy =require('passport-google-oauth20').Strategy;
+const mongoose= require('mongoose');
 require("dotenv").config();
 
 function userStrategy(email, password, done) {
@@ -128,4 +131,49 @@ module.exports = function (passport) {
 			ownerjwtCallback
 		)
 	);
+	passport.use(new GoogleStrategy({
+        clientID:process.env.GOOGLE_CLIENT_ID,
+        clientSecret:process.env.GOOGLE_CLIENT_SECRET,
+        callbackURL:'/auth/google/callback'                                                                                       
+    },
+    async(accessToken,refreshToken,profile,done)=>{
+        //console.log(profile);
+        const newUser ={
+            googleId:profile.id,
+            email : profile.emails[0].value,
+            name: profile.displayName, 
+		}
+         //console.log(newUser);
+        try {    
+            let user= await User.findOne({googleId:profile.id})
+            if(user)
+            {
+				console.log('found!!');
+                done(null,user)
+            }
+            else
+            {
+                user=await User.create(newUser)
+					.then((res)=>{
+                    console.log("contanct done");
+					done(null,user);
+                },(err)=>{
+                    console.log(`posterr${err}`);
+					done(null,false);
+                })
+						}
+             
+        } catch (error) {
+            console.log(error);
+        }
+    }
+    )
+    )
+	passport.serializeUser((user,done)=>{
+        done(null,user.id)
+    })
+
+    passport.deserializeUser((id,done)=>{
+        User.findById(id,(err,user)=>done(err,user))
+    })
 };

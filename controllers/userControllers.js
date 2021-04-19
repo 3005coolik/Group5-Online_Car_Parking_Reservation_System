@@ -6,6 +6,7 @@ const ParkingLocation=require("../models/Location");
 var Userdb=require('../models/Users');
 const bcrypt = require("bcryptjs");
 const BookedSlots=require('../models/BookedSlots');
+const Location=require("../models/Location");
 
 
 // Get form for update user
@@ -67,6 +68,16 @@ router.get("/:id", async(req, res) => {
 	res.render("../views/user_index",{parkings,user_id:req.params.id});
 });
 
+router.get('/:id/bookings',async(req,res)=> {
+    var bookings= await BookedSlots.find({"user":req.params.id});
+    await Promise.all(bookings.map(async(booking)=> {
+        var loc = await Location.findById(booking.location);
+        booking.loc= loc.location;
+        return booking;
+    }));
+    res.render('../views/booking',{bookings});
+})
+
 // Get request for date and time entry
 router.get('/:id/:p_id',async(req,res)=>{
     res.render('../views/date_time_entry',{parking_id:req.params.p_id,user_id:req.params.id});
@@ -75,7 +86,7 @@ router.get('/:id/:p_id',async(req,res)=>{
 // Post request for date and time entry
 router.post('/:id/:p_id',async(req,res)=>{
 
-    console.log(req.body)
+    //console.log(req.body)
     
     var newStartTime=req.body.starttime;
     var startDate= req.body.startdate;
@@ -142,8 +153,5 @@ router.get('/:id/:p_id/payment',async(req,res)=> {
 
     res.render('../views/payment',{slotno:req.app.get('slotno'),price:req.app.get('price')});
 })
-
-
-
 
 module.exports = router;
