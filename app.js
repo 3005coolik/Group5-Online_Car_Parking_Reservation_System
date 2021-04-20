@@ -31,9 +31,9 @@ const db = process.env.DBURI;
 
 // Connect to mongo
 mongoose
-	.connect(db, { useNewUrlParser: true, useUnifiedTopology: true })
+	.connect(db, { useNewUrlParser: true, useUnifiedTopology: true,useFindAndModify: false })
 	.then(() => {
-		const PORT = process.env.PORT || 8082;
+		const PORT = process.env.PORT || 8083;
 		app.listen(PORT, console.log("Server Started"));
 		console.log("Connected to DB");
 	})

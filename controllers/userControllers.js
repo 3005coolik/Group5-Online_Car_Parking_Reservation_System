@@ -173,10 +173,34 @@ router.get('/:id/:p_id/reviews',async(req,res)=>{
 router.post('/:id/:p_id/reviews',async(req,res)=>{
     const parking=await ParkingLocation.findById(req.params.p_id);
     const review=new Review(req.body.review);
+    var totalratings=parking.reviews.length*parking.avgrating;
+    var rating=Number(req.body.review.rating);
+    totalratings=totalratings+rating; 
     review.author=req.params.id;
     parking.reviews.push(review);
-    console.log(review)
+    parking.avgrating=(totalratings/parking.reviews.length).toPrecision(2); 
+    
     await review.save();
+    await parking.save();
+    res.redirect(`/user/${req.params.id}/${req.params.p_id}/reviews`);
+})
+
+router.delete('/:id/:p_id/reviews/:reviewId', async (req, res) => {
+    const { p_id, reviewId } = req.params;
+    const parking=await ParkingLocation.findById(req.params.p_id);
+    const review=await Review.findById(req.params.reviewId);
+    var rating=Number(review.rating);
+    var totalratings=parking.reviews.length*parking.avgrating;
+    totalratings=totalratings-rating;
+    if(parking.reviews.length!=1)
+    {
+        parking.avgrating=(totalratings/(parking.reviews.length-1)).toPrecision(2);
+    }
+    else{
+        parking.avgrating=0;
+    }
+    await ParkingLocation.findByIdAndUpdate(p_id, { $pull: { reviews: reviewId } });
+    await Review.findByIdAndDelete(reviewId);
     await parking.save();
     res.redirect(`/user/${req.params.id}/${req.params.p_id}/reviews`);
 })

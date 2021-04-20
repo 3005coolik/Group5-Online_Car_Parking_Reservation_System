@@ -25,6 +25,7 @@
 <body>
 	<div class="container">
 		<h1><%= parking.title %> </h1>
+        <h2>rating: <%= parking.avgrating %></h2>
         <h2>price for 2 wheeler: <%= parking.price2w %> </h2>
         <h2>price for 4 wheeler: <%= parking.price4w %> </h2>
         <h3><%= parking.location %> </h3>
@@ -61,6 +62,11 @@
                         Rated: <%= review.rating %> stars
                     </p>
                     <p class="card-text">Review: <%= review.body %></p>
+                    <% if(review.author.equals(user_id)) {%> 
+                        <form action="/user/<%=user_id%>/<%=parking._id%>/reviews/<%=review._id%>?_method=DELETE" method="POST">
+                            <button class="btn btn-sm btn-danger">Delete</button>
+                        </form>
+                    <% } %> 
                 </div>
             </div>
             <% } %>
