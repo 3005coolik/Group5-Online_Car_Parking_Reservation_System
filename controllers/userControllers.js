@@ -7,6 +7,7 @@ var Userdb=require('../models/Users');
 const bcrypt = require("bcryptjs");
 const BookedSlots=require('../models/BookedSlots');
 const Location=require("../models/Location");
+const Review=require("../models/Review");
 
 
 // Get form for update user
@@ -153,5 +154,37 @@ router.get('/:id/:p_id/payment',async(req,res)=> {
 
     res.render('../views/payment',{slotno:req.app.get('slotno'),price:req.app.get('price')});
 })
+
+//get request for review and ratings
+
+router.get('/:id/:p_id/reviews',async(req,res)=>{
+    const parking=await ParkingLocation.findById(req.params.p_id).populate({
+        path: 'reviews',
+        populate: {
+            path: 'author'
+        }
+    });
+    //console.log(parking)
+    res.render('../views/show',{parking,user_id:req.params.id});
+})
+
+//post request for review and ratings
+
+router.post('/:id/:p_id/reviews',async(req,res)=>{
+    const parking=await ParkingLocation.findById(req.params.p_id);
+    const review=new Review(req.body.review);
+    review.author=req.params.id;
+    parking.reviews.push(review);
+    console.log(review)
+    await review.save();
+    await parking.save();
+    res.redirect(`/user/${req.params.id}/${req.params.p_id}/reviews`);
+})
+
+
+
+
+
+
 
 module.exports = router;
