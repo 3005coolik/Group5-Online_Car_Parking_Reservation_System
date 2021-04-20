@@ -96,8 +96,7 @@
 						function changeaction() {
 							const category = document.getElementById("category").value;
 							document.getElementById("login").action = "/" + category + "/login";
-							var answer=document.getElementById('category').value;
-									if (answer == "user") { 
+									if (category == "user") { 
 										  document.getElementById('gbtn').style.display = "block";
 									} else{
 										  document.getElementById('gbtn').style.display = "none";

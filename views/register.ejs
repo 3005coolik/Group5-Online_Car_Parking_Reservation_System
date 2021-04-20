@@ -60,7 +60,7 @@
 <div id="bigRightBox">
      <div class="loginbox signupbox">
        <h1 class="title">Sign up your Account</h1>
-        <form action="/register" method="POST">
+        <form action="/register" method="POST" id="register">
           <label for="name" class="inpt">Name</label>
           <input
             type="name"
@@ -90,7 +90,7 @@
 		  </div>
 		  <div class="form-group col-md-6">
           <label for="category" class="inpt">Category</label>
-          <select name="category" id="category">
+          <select name="category" id="category" onchange="changeaction()">
             <option value="user" class="l1">User</option>
             <option value="owner" class="l1">Parking Owner</option>
           </select>
@@ -142,22 +142,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 		<script>
-      /*
-			function displaybutton() {
-				var answer=document.getElementById('category').value;
-				if (answer == "user") { 
- 					 document.getElementById('gbtn').style.display = "block";
-				} else{
- 					 document.getElementById('gbtn').style.display = "none";
-				}
-			}*/
-      function displaybutton() {
+      function changeaction() {
 
-							//const category = document.getElementById("category").value;
-							//document.getElementById("register").action = "/" + category + "/register";
-
-							var answer=document.getElementById('category').value;
-									if (answer == "user") { 
+							const category = document.getElementById("category").value;
+									if (category == "user") { 
 										  document.getElementById('gbtn').style.display = "block";
 									} else{
 										  document.getElementById('gbtn').style.display = "none";
