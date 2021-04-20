@@ -95,7 +95,12 @@ router.post('/:id',async(req,res)=>{
 
 // Get parking details 
 router.get('/:id/:p_id',async(req,res)=>{
-    const parking=await ParkingLocation.findById(req.params.p_id);
+    const parking=await ParkingLocation.findById(req.params.p_id).populate({
+        path: 'reviews',
+        populate: {
+            path: 'author'
+        }
+    });
 	const id=req.params.id;
     res.render('parkings/show',{parking,id});
 })
