@@ -7,6 +7,7 @@ var Userdb=require('../models/Users');
 const bcrypt = require("bcryptjs");
 const BookedSlots=require('../models/BookedSlots');
 const Location=require("../models/Location");
+const Review=require("../models/Review");
 
 
 // Get form for update user
@@ -94,23 +95,26 @@ router.post('/:id/:p_id',async(req,res)=>{
     var start_book= new Date(startDate+"T"+startTime+"Z");
     newStartTime=start_book;
     var duration= req.body.dur;
-    var newEndTime=new Date(start_book.getTime()+duration*60000);
     
+    var newEndTime=new Date(start_book.getTime()+duration*3600000);
+
     var UndesiredSlots = await BookedSlots.find({"starttime": {"$lt": newEndTime},"endtime": {"$gt": newStartTime}, "location":req.params.p_id,"vehicletype":req.body.vtype})
         
     UndesiredSlots= UndesiredSlots.map((slot)=>{
         return slot.slotnumber;
     });
-    var number;
+    var number,price;
     const vtype= req.body.vtype;
     const curslot = await ParkingLocation.findById(req.params.p_id);
     if(vtype.type==="two")
     {
         number=curslot.slot2w;
+        price=duration*curslot.price2w;
     }
     else
     {
         number=curslot.slot4w;
+        price=duration*curslot.price4w;
     }
     var slotno=-1;
     for(var i = 1; i <= number; i++) {
@@ -129,6 +133,7 @@ router.post('/:id/:p_id',async(req,res)=>{
     }
     else{
         req.app.set('slotno',slotno);
+        req.app.set('price',price);
         const Slots = new BookedSlots({
             location:req.params.p_id,
             slotnumber:slotno,
@@ -136,6 +141,7 @@ router.post('/:id/:p_id',async(req,res)=>{
             endtime:newEndTime,
             vehiclenumber:req.body.vno,
             vehicletype:req.body.vtype,
+            price,
             user:req.params.id
         }) ;
         await Slots.save()
@@ -146,7 +152,63 @@ router.post('/:id/:p_id',async(req,res)=>{
 
 router.get('/:id/:p_id/payment',async(req,res)=> {
 
-    res.render('../views/payment',{slotno:req.app.get('slotno')});
+    res.render('../views/payment',{slotno:req.app.get('slotno'),price:req.app.get('price')});
 })
+
+//get request for review and ratings
+
+router.get('/:id/:p_id/reviews',async(req,res)=>{
+    const parking=await ParkingLocation.findById(req.params.p_id).populate({
+        path: 'reviews',
+        populate: {
+            path: 'author'
+        }
+    });
+    //console.log(parking)
+    res.render('../views/show',{parking,user_id:req.params.id});
+})
+
+//post request for review and ratings
+
+router.post('/:id/:p_id/reviews',async(req,res)=>{
+    const parking=await ParkingLocation.findById(req.params.p_id);
+    const review=new Review(req.body.review);
+    var totalratings=parking.reviews.length*parking.avgrating;
+    var rating=Number(req.body.review.rating);
+    totalratings=totalratings+rating; 
+    review.author=req.params.id;
+    parking.reviews.push(review);
+    parking.avgrating=(totalratings/parking.reviews.length).toPrecision(2); 
+    
+    await review.save();
+    await parking.save();
+    res.redirect(`/user/${req.params.id}/${req.params.p_id}/reviews`);
+})
+
+router.delete('/:id/:p_id/reviews/:reviewId', async (req, res) => {
+    const { p_id, reviewId } = req.params;
+    const parking=await ParkingLocation.findById(req.params.p_id);
+    const review=await Review.findById(req.params.reviewId);
+    var rating=Number(review.rating);
+    var totalratings=parking.reviews.length*parking.avgrating;
+    totalratings=totalratings-rating;
+    if(parking.reviews.length!=1)
+    {
+        parking.avgrating=(totalratings/(parking.reviews.length-1)).toPrecision(2);
+    }
+    else{
+        parking.avgrating=0;
+    }
+    await ParkingLocation.findByIdAndUpdate(p_id, { $pull: { reviews: reviewId } });
+    await Review.findByIdAndDelete(reviewId);
+    await parking.save();
+    res.redirect(`/user/${req.params.id}/${req.params.p_id}/reviews`);
+})
+
+
+
+
+
+
 
 module.exports = router;

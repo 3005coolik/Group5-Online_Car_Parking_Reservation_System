@@ -10,7 +10,7 @@ const cookieParser = require("cookie-parser");
 const indexControllers = require("./controllers/indexControllers");
 const userControllers = require("./controllers/userControllers");
 const ownerControllers = require("./controllers/ownerControllers");
-
+const methodOverride = require('method-override');
 
 
 const app = express();
@@ -19,6 +19,8 @@ const app = express();
 app.use(passport.initialize())
 
 app.use(cookieParser());
+
+app.use(methodOverride('_method'));
 
 // Passport Config
 require("./config/passport")(passport);
@@ -29,9 +31,9 @@ const db = process.env.DBURI;
 
 // Connect to mongo
 mongoose
-	.connect(db, { useNewUrlParser: true, useUnifiedTopology: true })
+	.connect(db, { useNewUrlParser: true, useUnifiedTopology: true,useFindAndModify: false })
 	.then(() => {
-		const PORT = process.env.PORT || 8080;
+		const PORT = process.env.PORT || 8083;
 		app.listen(PORT, console.log("Server Started"));
 		console.log("Connected to DB");
 	})

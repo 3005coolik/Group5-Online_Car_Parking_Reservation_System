@@ -25,6 +25,15 @@ const ParkingLocationSchema=new Schema({
     owner:{
         type:Schema.Types.ObjectId,
         ref:'owner'
+    },
+    reviews:[
+        {
+            type:Schema.Types.ObjectId,
+            ref:'Review'
+        }
+    ],
+    avgrating:{
+        type:Number
     }
 },opts);
 ParkingLocationSchema.virtual('properties.data').get(function () {

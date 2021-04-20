@@ -88,13 +88,19 @@ router.post('/:id',async(req,res)=>{
     const parking =new ParkingLocation(req.body.parking);
     parking.geometry=GeoData.body.features[0].geometry;
     parking.owner=req.owner._id;
+    parking.avgrating=0;
     await parking.save();
     res.redirect(`/owner/${req.owner._id}`);
 })
 
 // Get parking details 
 router.get('/:id/:p_id',async(req,res)=>{
-    const parking=await ParkingLocation.findById(req.params.p_id);
+    const parking=await ParkingLocation.findById(req.params.p_id).populate({
+        path: 'reviews',
+        populate: {
+            path: 'author'
+        }
+    });
 	const id=req.params.id;
     res.render('parkings/show',{parking,id});
 })

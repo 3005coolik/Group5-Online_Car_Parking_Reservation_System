@@ -9,6 +9,7 @@
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
    		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
      	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
 		<!-- Google Fonts Roboto -->
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
 		<!-- Bootstrap core CSS -->
@@ -17,16 +18,81 @@
 		<link rel="stylesheet" href="/css/mdb.min.css">
 		<!-- Your custom styles (optional) -->
 		<link rel="stylesheet" href="/css/style3.css">
+		<link rel="stylesheet" href="/css/stars.css">
     <title>Show</title>
 </head>
 
 <body>
-    <h1><%= parking.title %> </h1>
-    <h2><%= parking.price %> </h2>
-    <h3><%= parking.location %> </h3>
+	<div class="container">
+		<h1><%= parking.title %> </h1>
+        <h2>rating: <%= parking.avgrating %></h2>
+        <h2>price for 2 wheeler: <%= parking.price2w %> </h2>
+        <h2>price for 4 wheeler: <%= parking.price4w %> </h2>
+        <h3><%= parking.location %> </h3>
+        <h2>Leave a Review</h2>
+        <form action="/user/<%=user_id%>/<%=parking._id%>/reviews" method="POST" class="mb-3 validated-form" novalidate>
+            <fieldset class="starability-basic">
+                <input type="radio" id="no-rate" class="input-no-rate" name="review[rating]" value="1" checked
+                    aria-label="No rating." />
+                <input type="radio" id="first-rate1" name="review[rating]" value="1" />
+                <label for="first-rate1" title="Terrible">1 star</label>
+                <input type="radio" id="first-rate2" name="review[rating]" value="2" />
+                <label for="first-rate2" title="Not good">2 stars</label>
+                <input type="radio" id="first-rate3" name="review[rating]" value="3" />
+                <label for="first-rate3" title="Average">3 stars</label>
+                <input type="radio" id="first-rate4" name="review[rating]" value="4" />
+                <label for="first-rate4" title="Very good">4 stars</label>
+                <input type="radio" id="first-rate5" name="review[rating]" value="5" />
+                <label for="first-rate5" title="Amazing">5 stars</label>
+            </fieldset>
+            <div class="mb-3">
+                <label class="form-label" for="body">Review</label>
+                <textarea class="form-control" name="review[body]" id="body" cols="30" rows="3" required></textarea>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+            <button class="btn btn-success">Submit</button>
+        </form>
+        <% for(let review of parking.reviews) { %>
+            <div class="card mb-3 ">
+                <div class="card-body">
+                    <h5 class="card-title"> <%= review.author.name%></h5>
+                    <p class="starability-result" data-rating="<%=review.rating%>">
+                        Rated: <%= review.rating %> stars
+                    </p>
+                    <p class="card-text">Review: <%= review.body %></p>
+                    <% if(review.author.equals(user_id)) {%> 
+                        <form action="/user/<%=user_id%>/<%=parking._id%>/reviews/<%=review._id%>?_method=DELETE" method="POST">
+                            <button class="btn btn-sm btn-danger">Delete</button>
+                        </form>
+                    <% } %> 
+                </div>
+            </div>
+            <% } %>
     <footer>
         <a href="/user/<%= user_id %>">All Parkings</a>
     </footer>
+	</div>
+    
+    <script>
+        (function () {
+            'use strict'
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            const forms = document.querySelectorAll('.validated-form')
+            // Loop over them and prevent submission
+            Array.from(forms)
+                .forEach(function (form) {
+                    form.addEventListener('submit', function (event) {
+                        if (!form.checkValidity()) {
+                            event.preventDefault()
+                            event.stopPropagation()
+                        }
+                        form.classList.add('was-validated')
+                    }, false)
+                })
+        })()
+    </script>
 </body>
 
 
