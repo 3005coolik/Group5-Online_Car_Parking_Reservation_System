@@ -65,7 +65,7 @@
 				type="password"
 				id="password"
 				name="password"
-				placeholder="Create Password"
+				placeholder="Enter Password"
 				required
 			/>
 			<label for="category" class="inp">Category</label>
@@ -76,17 +76,8 @@
 			
 			<p class= "al0" style="color:black; font-weight: 400; margin-top: 10px">New user?  	
           <a class="al1" style="color:white;" href="/register">Signup here</a></p>
-<!--
-		  <div class="google-btn">
-		  <a id="googlebutton" href="/auth/google" class="btn red darken-1">
-			<div class="google-icon-wrapper">
-				<i class="fab fa-google"></i>
-			  </div>
-			  <p class="btn-text" style="text-align:center;"><b>Log in with google</b></p>
-		</a>
-	</div>
--->
-	<div class="google-btn" >
+
+	<div class="google-btn" id="gbtn">
 		
 		<div class="google-icon-wrapper">
 			
@@ -102,6 +93,7 @@
     </div>
 	                </div>
 					<script>
+<<<<<<< HEAD
 						function displaybutton() {
 							var answer=document.getElementById('category').value;
 							if (answer == "user") { 
@@ -120,3 +112,20 @@
 		document.getElementById("login").action = "/" + category + "/login";
 	}
 </script>
+=======
+						function changeaction() {
+							const category = document.getElementById("category").value;
+							document.getElementById("login").action = "/" + category + "/login";
+							var answer=document.getElementById('category').value;
+									if (answer == "user") { 
+										  document.getElementById('gbtn').style.display = "block";
+									} else{
+										  document.getElementById('gbtn').style.display = "none";
+									}
+						}
+					</script>			
+			
+	</body>
+</html>
+
+>>>>>>> d6c2cb9310a2040cf8df29f53671f1b060c33214

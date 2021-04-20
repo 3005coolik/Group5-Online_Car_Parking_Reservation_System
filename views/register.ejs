@@ -118,7 +118,11 @@
 		  
             <p class= "al3" style="color:black; font-weight: 400;">Already registered? <a class="al1" style="color:white;" href="/login">Login here</a></p>
 
+<<<<<<< HEAD
             <div class="google-btn" >
+=======
+            <div class="google-btn" id="gbtn" >
+>>>>>>> d6c2cb9310a2040cf8df29f53671f1b060c33214
 		
               <div class="google-icon-wrapper">
                 
@@ -141,7 +145,28 @@
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-         
-      
-  </body>
+		<script>
+      /*
+			function displaybutton() {
+				var answer=document.getElementById('category').value;
+				if (answer == "user") { 
+ 					 document.getElementById('gbtn').style.display = "block";
+				} else{
+ 					 document.getElementById('gbtn').style.display = "none";
+				}
+			}*/
+      function displaybutton() {
+
+							//const category = document.getElementById("category").value;
+							//document.getElementById("register").action = "/" + category + "/register";
+
+							var answer=document.getElementById('category').value;
+									if (answer == "user") { 
+										  document.getElementById('gbtn').style.display = "block";
+									} else{
+										  document.getElementById('gbtn').style.display = "none";
+									}
+						}
+		</script>
+	</body>
 </html>

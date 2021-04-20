@@ -7,6 +7,9 @@ const jwt = require("jsonwebtoken");
 const passport = require("passport");
 const User = require("../models/Users");
 const Owner = require("../models/Owners");
+const axios=require('axios');
+const GoogleStrategy =require('passport-google-oauth20').Strategy;
+ 
 const jwtExpirySeconds = 30000;
 // GET home page
 router.get("/", (req, res) => {
@@ -17,6 +20,31 @@ router.get("/", (req, res) => {
 router.get("/register", (req, res) => {
 	res.render("register");
 });
+
+//GET google Register 
+router.get('/auth/google',passport.authenticate('google',{scope: 'profile email'}))	
+
+//callback from google API
+router.get('/auth/google/callback',passport.authenticate('google',{failureRedirect:'/'}),(req,res)=>{
+	const user=req.user;
+	if (!user) {
+		res.redirect("/login");
+	}
+	//console.log(user);
+	req.login(user, { session: false }, async (error) => {
+		if (error) {
+			console.log(error);
+		}
+		//req.user=user;
+		
+		const token = jwt.sign({ user }, process.env.ACCESS_TOKEN, {
+			algorithm: "HS256",
+			expiresIn: jwtExpirySeconds,
+		});
+		res.cookie("token", token, { maxAge: jwtExpirySeconds * 1000 });
+		res.redirect(`/user/${user._id}`);
+	});
+})
 
 // GET login form
 router.get("/login", (req, res) => {
@@ -85,9 +113,11 @@ router.post("/user/login", (req, res, next) => {
 	passport.authenticate("user", (err, user) => {
 		if (err) {
 			res.send(err);
+			return;
 		}
 		if (!user) {
 			res.redirect("/login");
+			return;
 		}
 		req.login(user, { session: false }, async (error) => {
 			if (error) {
@@ -109,9 +139,11 @@ router.post("/owner/login", (req, res, next) => {
 	passport.authenticate("owner", (err, owner) => {
 		if (err) {
 			res.send(err);
+			return;
 		}
 		if (!owner) {
 			res.redirect("/login");
+			return;
 		}
 		req.login(owner, { session: false }, async (error) => {
 			if (error) {

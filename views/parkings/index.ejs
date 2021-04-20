@@ -3,29 +3,68 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+        
+			<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+			   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+			 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+			<!-- Google Fonts Roboto -->
+			<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+			<!-- Bootstrap core CSS -->
+			<link rel="stylesheet" href="/css/bootstrap.min.css">
+			<!-- Material Design Bootstrap -->
+			<link rel="stylesheet" href="/css/mdb.min.css">
+			<!-- Your custom styles (optional) -->
+			<link rel="stylesheet" href="/css/style4o.css">
+    
     <script src="https://api.mapbox.com/mapbox-gl-js/v2.1.1/mapbox-gl.js"></script>
     <link href="https://api.mapbox.com/mapbox-gl-js/v2.1.1/mapbox-gl.css" rel="stylesheet" />
     <title>Parkings</title>
 </head>
 
-<body>
-    <h1>Parkings of <%=owner.name%> </h1>
-    <a href="/owner/<%=id%>/update-owner">Update owner</a>
-    <a href="/owners/logout">Logout</a>
+<body id="ownerdash">
+    <nav class="navbar sticky-top shadow p-2 mb-2">
+        <a class="navbar-brand" href="/login"><i class="fas fa-arrow-circle-left"></i></a>
+        </nav>
+    <div class="sidenav">
+        <div class="useinfo">
+        <a><i class="fas fa-user-tie"></i></a>
+    </div>
+        <a href="/owner/<%=id%>/update-owner" class="lnk">Update owner</a>
+        <a href="/owner/<%=id%>/newParking" class="lnk">Add Parking</a>
+        <a href="/owners/logout" class="lnk">Logout</a>
+      </div>
+    <h1 class="tl">Parking areas of <%=owner.name%>:</h1>
+    
+    
+
     <div>
         <a href="/owner/<%=id%>/newParking">Add Parking</a>
     </div>
-    <ul>
-        <% for(let parking of parkings) {%>
-            <li><a href="/owner/<%=id%>/<%=parking._id%>"><%= parking.title %></a></li>    
-        <% } %>  
-    </ul>
+    <div>
+    
+    <% for(let parking of parkings) {%>
+        
+    <div class="card mb-4" style="width: 18rem;">
+        <img src="/css/img/pr.jpg" class="card-img-top" alt="PR" style="height: 250px;">
+        <div class="card-body">
+          <h5 class="card-title"><%= parking.title %></h5>
+          <p class="card-text"><%= parking.description %></p>
+          <a href="/owner/<%=id%>/<%=parking._id%>" class="btn btn-primary">Details</a>
+        </div>
+      </div>
+      <% } %> 
+    </div>
+
     <script>
         const mapToken = '<%-process.env.MAPBOX_TOKEN%>';
     </script>
     
 </body>
+<script src="/javascripts/clusterMap.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
 </html>
