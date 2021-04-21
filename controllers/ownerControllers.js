@@ -4,6 +4,9 @@ const passport = require("passport");
 const ParkingLocation=require("../models/Location")
 const bcrypt = require("bcryptjs");
 const Owner=require("../models/Owners")
+const BookedSlots=require('../models/BookedSlots');
+var Userdb=require('../models/Users');
+
  
 const mbxGeocoding = require("@mapbox/mapbox-sdk/services/geocoding");
 const mapBoxToken=process.env.MAPBOX_TOKEN;
@@ -102,7 +105,16 @@ router.get('/:id/:p_id',async(req,res)=>{
         }
     });
 	const id=req.params.id;
-    res.render('parkings/show',{parking,id});
+    const bookings= await BookedSlots.find({location: req.params.p_id,});
+    await Promise.all(bookings.map(async(booking)=> {
+        var usr = await Userdb.findById(booking.user);
+        booking.user_name= usr.name;
+        booking.user_contact= usr.contact;
+        booking.user_email= usr.email;
+        return booking;
+    }));
+    // console.log(bookings);
+    res.render('parkings/show',{parking,id,bookings});
 })
 
 module.exports = router;
