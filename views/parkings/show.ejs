@@ -21,8 +21,20 @@
     <h2>price for 4 wheeler: <%= parking.price4w %> </h2>
     <h2>no of slots for 2 wheeler: <%= parking.slot4w%> </h2>
     <h3><%= parking.location %> </h3>
-    
-    <% for(let review of parking.reviews) { %>
+    <% for(var booking of bookings){ %>
+        <p>User: <%= booking.user_name %><p>
+        <p>User Email: <%=booking.user_email%></p>
+        <% if(booking.user_contact){ %>
+            <p>User Contact: <%=booking.user_contact%></p>
+        <% } else { %> 
+            <p>User Contact: Not Provided</p>
+        <% } %>   
+        <p>Vehicle Number: <%=booking.vehiclenumber%></p> 
+        <p>Booked from: <%=booking.starttime%>  To <%= booking.endtime %> </p>
+        <p>Booked on slot number: <%= booking.slotnumber %> </p> 
+        <p>Price: <%= booking.price%></p>    
+    <% } %> 
+    <% for(var review of parking.reviews) { %>
         <div class="card mb-3 ">
             <div class="card-body">
                 <h5 class="card-title"> <%= review.author.name%></h5>
