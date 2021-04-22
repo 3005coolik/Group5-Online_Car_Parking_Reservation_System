@@ -4,11 +4,103 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+    
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+           <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <!-- Google Fonts Roboto -->
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+        <!-- Bootstrap core CSS -->
+        <link rel="stylesheet" href="/css/bootstrap.min.css">
+        <!-- Material Design Bootstrap -->
+        <link rel="stylesheet" href="/css/mdb.min.css">
+        <!-- Your custom styles (optional) -->
+       
+
+<script src="https://api.mapbox.com/mapbox-gl-js/v2.1.1/mapbox-gl.js"></script>
+<link href="https://api.mapbox.com/mapbox-gl-js/v2.1.1/mapbox-gl.css" rel="stylesheet" />
+
+<style>
+    body{
+        background-image: url("/css/img/bgbuilding.png");
+    }
+    .navbar
+    {
+    background-color: #fe8118;
+    }
+    .fa-arrow-circle-left
+{
+    color: #000;
+    font-size: 45px;
+    margin-left: 5px;
+    transition: 0.3s;
+    animation-name: onloadAnim;
+    animation-duration: 1s;
+}
+.fa-arrow-circle-left:hover
+{
+    color:#fff;
+}
+
+.login-box
+{
+
+    width: 1400px;
+	height: 700px;
+	position: relative;
+    left: 14%;
+    top:60px;
+	background: rgba(149, 141, 141, 0.81);
+    box-shadow:  0 12.5px 10px rgba(0, 0, 0, 0.06);
+
+    border-radius: 20px;
+
+}
+#bigLeftBox {
+ 
+    height: 700px;
+    width:50%;
+    background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url("img/bg2.jpg");
+    background-size: cover;
+    background-position: center;
+    background-blend-mode: darken;
+    float:left;
+    border-radius: 20px 0px 0px 20px ;
+}
+#bigRightBox {
+   
+    height: 700px;
+    width:50%;
+   
+    float:right;
+}
+</style>
     <title>New Parking</title>
 </head>
 
-<body>
-    <form action="/owner/<%=id%>" method="POST">
+<body id="newparking">
+    <nav class="navbar sticky-top shadow p-2 mb-2">
+        <a class="navbar-brand" href="/login"><i class="fas fa-arrow-circle-left"></i></a>
+        </nav>
+        <div class="login-box">
+  
+            <div id="bigLeftBox">
+                <h2 style="color:#fff; font-size: 60px; margin:50px 50px; font-weight: 500; text-shadow: 2px 2px 4px #000000;"> Welcome to 
+                    <br> PyP: Plan your Park
+                </h2>
+           </div>
+       
+           <div id="bigRightBox">
+             <div class="loginbox">
+               <h1>Login Into your Account</h1>
+              
+               </div>
+               
+           </div>
+                           </div>
+    
+        <form action="/owner/<%=id%>" method="POST">
         <div>
             <label for="title">Title</label>
             <input type="text" id="title" name="parking[title]">
