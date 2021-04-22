@@ -51,20 +51,14 @@
 	position: relative;
     left: 14%;
     top:60px;
-	background: rgba(149, 141, 141, 0.81);
-    box-shadow:  0 12.5px 10px rgba(0, 0, 0, 0.06);
-
-    border-radius: 20px;
+    /*If u want it back then copy it from style.css it was removed to have transperancy with background*/
 
 }
 #bigLeftBox {
  
     height: 700px;
     width:50%;
-    background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url("img/bg2.jpg");
-    background-size: cover;
-    background-position: center;
-    background-blend-mode: darken;
+  
     float:left;
     border-radius: 20px 0px 0px 20px ;
 }
@@ -74,6 +68,12 @@
     width:50%;
    
     float:right;
+}
+.inp
+{
+    color:#fff;
+    font-size: 22px;
+    font-weight: bold;
 }
 </style>
     <title>New Parking</title>
@@ -86,52 +86,53 @@
         <div class="login-box">
   
             <div id="bigLeftBox">
-                <h2 style="color:#fff; font-size: 60px; margin:50px 50px; font-weight: 500; text-shadow: 2px 2px 4px #000000;"> Welcome to 
-                    <br> PyP: Plan your Park
+                <h2 style="color:#fff; font-size: 40px; margin:50px 50px; font-weight: 500; text-shadow: 2px 2px 4px #000000;"> 
+                 Please Enter Details Of parking
                 </h2>
+                <form action="/owner/<%=id%>" method="POST">
+                    <div>
+                        <label for="title" class="inp">Title</label>
+                        <input type="text" id="title" name="parking[title]">
+                    </div>
+                    <div>
+                        <label for="location" class="inp">Location</label>
+                        <input type="text" id="location" name="parking[location]">
+                    </div>
+                    <div>
+                        <label for="description" class="inp">Description</label>
+                        <input type="text" id="description" name="parking[description]">
+                    </div>
+                    
            </div>
        
            <div id="bigRightBox">
              <div class="loginbox">
-               <h1>Login Into your Account</h1>
-              
+                <h2 style="color:#fff; font-size: 40px; margin:50px 50px; font-weight: 500; text-shadow: 2px 2px 4px #000000;"> 
+                    Enter the details of slots here
+                   </h2>
+                <label for="price2w" class="inp">price for two wheeler</label>
+                <input type="number" id="price2w" name="parking[price2w]">
+            </div>
+            <div>
+                <label for="slot2w" class="inp">slot for two wheeler</label>
+                <input type="number" id="slot2w" name="parking[slot2w]">
+            </div>
+            <div>
+                <label for="price4w" class="inp">price for four wheeler</label>
+                <input type="number" id="price4w" name="parking[price4w]">
+            </div>
+            <div>
+                <label for="slot4w" class="inp">slot for four wheeler</label>
+                <input type="number" id="slot4w" name="parking[slot4w]">
+            </div>
+            <button>Add Parking</button>
+            <a href="/owner/<%=id%>">All Parkings</a>       
                </div>
                
            </div>
                            </div>
     
-        <form action="/owner/<%=id%>" method="POST">
-        <div>
-            <label for="title">Title</label>
-            <input type="text" id="title" name="parking[title]">
-        </div>
-        <div>
-            <label for="location">Location</label>
-            <input type="text" id="location" name="parking[location]">
-        </div>
-        <div>
-            <label for="description">Description</label>
-            <input type="text" id="description" name="parking[description]">
-        </div>
-        <div>
-            <label for="price2w">price for two wheeler</label>
-            <input type="number" id="price2w" name="parking[price2w]">
-        </div>
-        <div>
-            <label for="slot2w">slot for two wheeler</label>
-            <input type="number" id="slot2w" name="parking[slot2w]">
-        </div>
-        <div>
-            <label for="price4w">price for four wheeler</label>
-            <input type="number" id="price4w" name="parking[price4w]">
-        </div>
-        <div>
-            <label for="slot4w">slot for four wheeler</label>
-            <input type="number" id="slot4w" name="parking[slot4w]">
-        </div>
-        <button>Add Parking</button>
-        <a href="/owner/<%=id%>">All Parkings</a>
-    </form>
+       
 </body>
 
 </html>
