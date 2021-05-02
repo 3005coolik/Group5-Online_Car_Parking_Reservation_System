@@ -54,6 +54,7 @@ router.post('/:id/update-owner',(req,res)=>{
             {
                 res.status(404).send({message:`cannot update user ${id}`})
             }else{
+                req.flash('success_msg','Details Updated Successfully');
                 res.redirect(`/owner/${id}`)
             }
         })
@@ -93,6 +94,7 @@ router.post('/:id',async(req,res)=>{
     parking.owner=req.owner._id;
     parking.avgrating=0;
     await parking.save();
+    req.flash('success_msg','New Location added successfully');
     res.redirect(`/owner/${req.owner._id}`);
 })
 
