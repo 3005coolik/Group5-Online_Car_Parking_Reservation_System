@@ -51,6 +51,7 @@ router.post('/:id/update-user',(req,res)=>{
             {
                 res.status(404).send({message:`cannot update user ${id}`})
             }else{
+                req.flash('success_msg','Details Updated Successfully');
                 res.redirect(`/user/${id}`)
             }
         })
@@ -129,6 +130,7 @@ router.post('/:id/:p_id',async(req,res)=>{
     
     if(slotno==-1)
     {
+        req.flash('error_msg','Sorry,all slots are full for given date and time!');
         res.redirect(`/user/${req.params.id}/${req.params.p_id}`);
     }
     else{
@@ -145,6 +147,7 @@ router.post('/:id/:p_id',async(req,res)=>{
             user:req.params.id
         }) ;
         await Slots.save()
+        req.flash('success_msg','successfully booked slot');
         res.redirect(`/user/${req.params.id}/${req.params.p_id}/payment`);
     }
         
@@ -182,6 +185,7 @@ router.post('/:id/:p_id/reviews',async(req,res)=>{
     
     await review.save();
     await parking.save();
+    req.flash('success_msg','successfully created review');
     res.redirect(`/user/${req.params.id}/${req.params.p_id}/reviews`);
 })
 
@@ -202,6 +206,7 @@ router.delete('/:id/:p_id/reviews/:reviewId', async (req, res) => {
     await ParkingLocation.findByIdAndUpdate(p_id, { $pull: { reviews: reviewId } });
     await Review.findByIdAndDelete(reviewId);
     await parking.save();
+    req.flash('success_msg','successfully deleted review');
     res.redirect(`/user/${req.params.id}/${req.params.p_id}/reviews`);
 })
 
