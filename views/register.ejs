@@ -62,6 +62,24 @@
      
 <div id="bigRightBox">
      <div class="loginbox signupbox">
+      <% if(success_msg!=""){ %> 
+
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+          <%= success_msg%>
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+      
+      <% } %> 
+      
+      
+      <% if(error_msg!=""){ %> 
+      
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+          <%= error_msg%>
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+      
+      <% } %>
        <h1 class="title">Sign up your Account</h1>
         <form action="/register" method="POST" id="register">
           <label for="name" class="inpt">Name</label>

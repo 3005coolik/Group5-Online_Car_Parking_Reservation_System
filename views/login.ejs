@@ -18,7 +18,7 @@
 		<link rel="stylesheet" href="css/style.css">
 		<title>Login</title>
 	</head>
-	<%- include('./partials/messages.ejs') %>
+	
 	<body id ="loginpage">
 		<nav class="navbar sticky-top shadow p-2 mb-2">
   <a class="navbar-brand" href="index.html"><i class="fas fa-car"></i></a>
@@ -41,7 +41,7 @@
       </li>
        </ul>
 </nav>
-
+<!--<%- include('./partials/messages.ejs') %>-->
 <div class="login-box">
   
      <div id="bigLeftBox">
@@ -52,7 +52,26 @@
 
     <div id="bigRightBox">
       <div class="loginbox">
+		<% if(success_msg!=""){ %> 
+
+			<div class="alert alert-success alert-dismissible fade show" role="alert">
+			  <%= success_msg%>
+			  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+			</div>
+		
+		<% } %> 
+		
+		
+		<% if(error_msg!=""){ %> 
+		
+			<div class="alert alert-danger alert-dismissible fade show" role="alert">
+				<%= error_msg%>
+				<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+			</div>
+		
+		<% } %>
         <h1>Login Into your Account</h1>
+		
 		<form action="/user/login" method="post" id="login">
 			<label for="email" class="inp">Email</label><br>
 			<input

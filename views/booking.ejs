@@ -8,11 +8,15 @@
 </head>
 <body>
     <% for(var booking of bookings){ %>
-        <h1><%= booking.loc %> </h1>
-        <p><b>SlotNo. </b> <%= booking.slotnumber %>  </p>
-        <p> <b>Start Time</b> <%= booking.starttime %> </p>
-        <p> <b> End Time</b> <%= booking.endtime %> </p>
-        <p> <b> vehicle Number</b> <%= booking.vehiclenumber %> </p>
-    <% } %> 
+    <div class="card" style="background-color: aqua;">
+        <div class="card-body">
+                <h1><%= booking.loc %> </h1>
+                <p><b>SlotNo. </b> <%= booking.slotnumber %>  </p>
+                <p> <b>Start Time</b> <%= booking.starttime %> </p>
+                <p> <b> End Time</b> <%= booking.endtime %> </p>
+                <p> <b> vehicle Number</b> <%= booking.vehiclenumber %> </p>
+        </div>
+      </div>
+      <% } %> 
 </body>
 </html>

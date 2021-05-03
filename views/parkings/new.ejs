@@ -1,45 +1,78 @@
 <!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
+<html>
+    <head>
+        <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>New Parking</title>
-</head>
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+   		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+     	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+		<!-- Google Fonts Roboto -->
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+		<!-- Bootstrap core CSS -->
+		<link rel="stylesheet" href="/css/bootstrap.min.css">
+		<!-- Material Design Bootstrap -->
+		<link rel="stylesheet" href="/css/mdb.min.css">
+		<!-- Your custom styles (optional) -->
+		<link rel="stylesheet" href="/css/style5o.css">
+        <title> New parking </title>
+    </head>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
-<body>
+<body id="entrypage">
+    <nav class="navbar sticky-top shadow p-2 mb-2">
+        <a class="navbar-brand" href="/owner/<%=id%>"><i class="fas fa-arrow-circle-left"></i></a>
+        </nav>
+
     <form action="/owner/<%=id%>" method="POST">
+        <div class="row">
+            <div class="col">
+                <h4 class="det" >ADD THE PARKING AREA</h4>
         <div>
-            <label for="title">Title</label>
-            <input type="text" id="title" name="parking[title]">
+            <label for="title" class="tle">Title:</label>
+            <br>
+            <input type="text" id="title" name="parking[title]" required>
         </div>
         <div>
-            <label for="location">Location</label>
-            <input type="text" id="location" name="parking[location]">
+            <label for="location" class="tle">Location:</label>
+            <br>
+            <input type="text" id="location" name="parking[location]" required>
         </div>
         <div>
-            <label for="description">Description</label>
-            <input type="text" id="description" name="parking[description]">
+            <label for="description" class="tle">Description:</label>
+            <br>
+            <textarea class="desc" id="description" name="parking[description]" rows="4" cols="38"></textarea>
+        </div>
+        </div>
+        <div class="col clm1">
+        <div>
+            <label for="price2w" class="tle">Price for 2 wheeler:</label>
+            <input type="number" id="price2w" name="parking[price2w]" min="0" required>
         </div>
         <div>
-            <label for="price2w">price for two wheeler</label>
-            <input type="number" id="price2w" name="parking[price2w]">
+            <label for="slot2w" class="tle">Total slots for 2 wheeler:</label>
+            <input type="number" id="slot2w" name="parking[slot2w]" min="0" required>
         </div>
         <div>
-            <label for="slot2w">slot for two wheeler</label>
-            <input type="number" id="slot2w" name="parking[slot2w]">
+            <label for="price4w" class="tle">Price for 4 wheeler:</label>
+            <input type="number" id="price4w" name="parking[price4w]" min="0" required>
         </div>
         <div>
-            <label for="price4w">price for four wheeler</label>
-            <input type="number" id="price4w" name="parking[price4w]">
+            <label for="slot4w" class="tle">Total slots for 4 wheeler:</label>
+            <input type="number" id="slot4w" name="parking[slot4w]" min="0" required>
         </div>
-        <div>
-            <label for="slot4w">slot for four wheeler</label>
-            <input type="number" id="slot4w" name="parking[slot4w]">
-        </div>
-        <button>Add Parking</button>
-        <a href="/owner/<%=id%>">All Parkings</a>
+        <button class="add">Add Parking</button>
+    </div>
+    <div class="col-5">
+        <div class="rect"><img src="/css/img/add.png" class="bimg"></div>
+
+       </div>
+       </div>
     </form>
 </body>
 
 </html>
+
+
+    
