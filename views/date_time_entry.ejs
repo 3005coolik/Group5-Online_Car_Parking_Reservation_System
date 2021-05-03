@@ -114,7 +114,48 @@
 
     <script> 
         document.getElementById("duration").min = 1 ;
-        document.getElementById("duration").defaultValue = "1";   
+        document.getElementById("duration").defaultValue = "1";
+        
+        document.getElementById("txtDate").addEventListener("change", function fun() {
+    var d = new Date();
+    var m = d.getMinutes();
+    var h = d.getHours();
+    if(h == '0') 
+    {
+        h = 24
+    }
+
+    var currentTime = h+":"+m;
+    var dtToday = new Date();
+    
+    var month = dtToday.getMonth() + 1;
+    var day = dtToday.getDate();
+    var year = dtToday.getFullYear();
+    if(month < 10)
+        month = '0' + month.toString();
+    if(day < 10)
+        day = '0' + day.toString();
+    
+    var maxDate = year + '-' + month + '-' + day;
+    var compDate = this.value;
+    var d = new Date(compDate);
+    var d1= new Date(maxDate);
+    if(d.getTime() === d1.getTime())   
+    {    
+        // $('#time').attr('min', currentTime);
+        var x = document.getElementById("time").min = currentTime;
+    }
+    else
+    {
+        var x = document.getElementById("time").min = "00:00";
+    }
+document.getElementById("para").innerHTML = compDate;
+document.getElementById("para1").innerHTML = maxDate;
+
+// document.getElementById("time").min = h+":"+m;
+
+// "Hello World" + "<br>" + "Welcome to the  javaTpoint.com";
+});
     </script>
     
     <script>
