@@ -165,6 +165,17 @@ height: 100%;
    
     float:right;
 }
+.alert
+{
+  margin-top: -82px;
+  margin-left: -70px;
+  height: fit-content;
+  
+}
+.signupbox .alert
+{
+  margin-top: -65px;
+}
 
 
 
