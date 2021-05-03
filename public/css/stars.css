@@ -188,3 +188,28 @@
       display: none;
     }
   }
+
+
+  #dash
+  {
+    background-color:  #343A40;
+    overflow-x: hidden;
+  }
+
+  .navbar
+{
+    background-color: #fe8118;
+}
+.fa-arrow-circle-left
+{
+    color: #000;
+    font-size: 45px;
+    margin-left: 20px;
+    transition: 0.3s;
+    animation-name: onloadAnim;
+    animation-duration: 1s;
+}
+.fa-arrow-circle-left:hover
+{
+    color:#fff;
+}
