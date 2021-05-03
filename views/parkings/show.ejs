@@ -13,29 +13,54 @@
     <title>Show</title>
 </head>
 
-<body>
-    <h1><%= parking.title %> </h1>
-    <h2>rating: <%= parking.avgrating %></h2>
-    <h2>Description: <%= parking.description %> </h2>
-    <h2>price for 2 wheeler: <%= parking.price2w %> </h2>
-    <h2>no of slots for 2 wheeler: <%= parking.slot2w%> </h2>
-    <h2>price for 4 wheeler: <%= parking.price4w %> </h2>
-    <h2>no of slots for 2 wheeler: <%= parking.slot4w%> </h2>
-    <h3><%= parking.location %> </h3>
-    <% for(var booking of bookings){ %>
-        <p>User: <%= booking.user_name %><p>
-        <p>User Email: <%=booking.user_email%></p>
-        <% if(booking.user_contact){ %>
-            <p>User Contact: <%=booking.user_contact%></p>
-        <% } else { %> 
-            <p>User Contact: Not Provided</p>
-        <% } %>   
-        <p>Vehicle Number: <%=booking.vehiclenumber%></p> 
-        <p>Booked from: <%=booking.starttime%>  To <%= booking.endtime %> </p>
-        <p>Booked on slot number: <%= booking.slotnumber %> </p> 
-        <p>Price: <%= booking.price%></p>    
-    <% } %> 
-    <% for(var review of parking.reviews) { %>
+<body id="dash">
+    <nav class="navbar sticky-top shadow p-2 mb-2">
+        <a class="navbar-brand" href="/owner/<%=id%>"><i class="fas fa-arrow-circle-left"></i></a>
+        </nav>
+
+        <div class="row">
+            <div class="col">
+                <div class="card bg-light mb-3" style="max-width: 800px;">
+                    <div class="card-header"><h2><%= parking.title %></h2></div>
+                    <div class="card-body">
+                      <p class="card-text">
+                        <h2>rating: <%= parking.avgrating %></h2>
+                <h2>Description: <%= parking.description %> </h2>
+                <h2>price for 2 wheeler: <%= parking.price2w %> </h2>
+                <h2>no of slots for 2 wheeler: <%= parking.slot2w%> </h2>
+                <h2>price for 4 wheeler: <%= parking.price4w %> </h2>
+                <h2>no of slots for 2 wheeler: <%= parking.slot4w%> </h2>
+                <h3><%= parking.location %> </h3> 
+                      </p>
+                    </div>
+                  </div>
+                
+                 
+
+
+            </div>
+            <div class="col-7">
+                <% for(var booking of bookings){ %>
+                    <p>User: <%= booking.user_name %><p>
+                    <p>User Email: <%=booking.user_email%></p>
+                    <% if(booking.user_contact){ %>
+                        <p>User Contact: <%=booking.user_contact%></p>
+                    <% } else { %> 
+                        <p>User Contact: Not Provided</p>
+                    <% } %>   
+                    <p>Vehicle Number: <%=booking.vehiclenumber%></p> 
+                    <p>Booked from: <%=booking.starttime%>  To <%= booking.endtime %> </p>
+                    <p>Booked on slot number: <%= booking.slotnumber %> </p> 
+                    <p>Price: <%= booking.price%></p>    
+                <% } %> 
+                <% for(var review of parking.reviews) { %>
+
+            </div>
+          </div>
+   
+  
+
+       
         <div class="card mb-3 ">
             <div class="card-body">
                 <h5 class="card-title"> <%= review.author.name%></h5>
@@ -46,9 +71,7 @@
             </div>
         </div>
         <% } %>
-    <footer>
-        <a href="/owner/<%=id%>">All Parkings</a>
-    </footer>
+    
 </body>
 
 </html>

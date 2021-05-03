@@ -12,20 +12,22 @@
 			<!-- Bootstrap core CSS -->
 			<link rel="stylesheet" href="/css/bootstrap.min.css">
 			<!-- Material Design Bootstrap -->
-			<link rel="stylesheet" href="/css/mdb.min.css">
+			<!-- <link rel="stylesheet" href="/css/mdb.min.css"> -->
 			<!-- Your custom styles (optional) -->
 			<link rel="stylesheet" href="/css/style2.css">
 		<title>Update Owner</title>
 	</head>
+	
 
 	<body>
 		<nav class="navbar sticky-top shadow p-2 mb-2">
             <a class="navbar-brand" href="/owner/<%=user._id%>"><i class="fas fa-arrow-circle-left"></i></a>
 			</nav>
-
+		
 			<div class="updatebox">
 				<div id="bigLeftBox">
 					<div class="upbox">
+
 		<form action="/owner/<%=user._id%>/update-owner"id="update_owner" method="POST">
 			<input type="hidden" name="id" value="<%=user._id%>">
 			<label for="name" class="inp">Name</label>

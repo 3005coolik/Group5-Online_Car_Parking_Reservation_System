@@ -288,3 +288,15 @@
 
 }
 
+
+.navbar-nav.navbar-center {
+  position: absolute;
+  left: 50%;
+  transform: translatex(-50%);
+}
+
+.alert
+{
+  margin-top: 10px;
+  margin-bottom: -30px;
+}
