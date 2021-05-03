@@ -82,7 +82,11 @@
     margin-left: 300px;
     display:inline-block;
     margin-right: -200px;
+    
+    
 }
+
+
 .card-title
 {
     font-size: 30px !important;
@@ -99,6 +103,7 @@
 {
     font-size: 22px;
     font-weight: 500;
+    align-items: stretch;
 }
 
 .btn-primary

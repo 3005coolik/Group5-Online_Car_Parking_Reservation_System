@@ -132,6 +132,7 @@
       {
           font-weight: bolder;
           font-size: 30px;
+          margin-bottom: 25px;
       }
       
       .card-text
@@ -139,16 +140,30 @@
           font-size: larger;
           font-weight: bold;
           color:gray;
+          margin-top:-10px;
       }
-    
+
+      .txt
+      {
+        display: inline-block;
+        margin-right:40px;
+        font-size: 25px;
+      }
      .cli
      {
         color:#fe8118;
         float: right;
+        margin-top: 10px;
+        display: inline-block;
         transition: 0.3s;
         animation-name: onloadAnim;
         animation-duration: 1s;
         
+     }
+     .cli1
+     {
+       float:left ;
+       margin-top: -5px;
      }
      .cli:hover
      {

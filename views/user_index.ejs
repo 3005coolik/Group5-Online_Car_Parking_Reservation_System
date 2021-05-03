@@ -28,22 +28,27 @@
    <nav class="navbar sticky-top shadow p-2 mb-2">
         <a class="navbar-brand" href="/login"><i class="fas fa-arrow-circle-left"></i></a>
         <ul class="nabar">
-            <li>
-<i class="fas fa-user-circle"></i>
+          
+            <li class="navi">
+               <i class="fas fa-user-circle"></i>
                 <ul style="list-style-type:none;">
                   <li>
-                    <a href="/user/<%=user_id%>/update-user">Update User</a>
-                  </li>
-                  <li>
                     <a href="/user/<%=user_id%>/bookings">View Bookings</a>
+                  </div>
+                  <li>
+                    <a href="/user/<%=user_id%>/update-user">Update User</a>
                   </li>
                   <li>
                     <a href="/users/logout">Logout</a>
                   </li>
                 </ul>
               </li>
+              
         </ul>
       </nav>
+
+
+
 
       <div class="split left">
     <div id="map" style="width:100%; height:100%"></div>
@@ -60,18 +65,17 @@
                 <div class="card mb-3" style="max-width: 800px; margin:60px">
                     <div class="row g-0">
                       <div class="col-md-4">
-                        <img src="/css/img/card.jpg" style="object-fit: cover; height:150px; width: 250px;">
+                        <img src="/css/img/card.jpg" style="object-fit: cover; height:200px; width: 250px;">
                       </div>
                       <div class="col-md-8">
                         <div class="card-body">
                           <h5 class="card-title"><%= parking.title %></h5>
                           <p class="card-text"><%= parking.description %></p>
-                          <p class="card-text"> Price for 2 wheeler: <%= parking.price2w %></p>
-                          <p class="card-text"> Price for 4 wheeler: <%= parking.price4w %></p>
+                          <p class="card-text txt"> <i class="fas fa-motorcycle"></i>: ₹ <%= parking.price2w %></p>
+                          <p class="card-text txt"> <i class="fas fa-car-side"></i>: ₹ <%= parking.price4w %></p>
                           <p class="card-text"><a class="cli" href="/user/<%= user_id %>/<%=parking._id%>">
                         Book your parking >></a></p>
-                        <p class="card-text"><a class="cli2" href="/user/<%= user_id %>/<%=parking._id%>/reviews">
-                          add feedback >></a></p>
+                        <p class="card-text"><a class="cli cli1" href="/user/<%= user_id %>/<%=parking._id%>/reviews"> << Add feedback</a></p>
                         </div>
                       </div>
                     </div>

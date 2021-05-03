@@ -46,11 +46,11 @@
     
     <% for(let parking of parkings) {%>
         
-    <div class="card mb-4" style="width: 18rem;">
+    
+    <div class="card mb-4 align-items-stretch" style="width: 18rem;">
         <img src="/css/img/pr.jpg" class="card-img-top" alt="PR" style="height: 250px;">
         <div class="card-body">
           <h5 class="card-title"><%= parking.title %></h5>
-          <p class="card-text"><%= parking.description %></p>
           <a href="/owner/<%=id%>/<%=parking._id%>" class="btn btn-primary">Details</a>
         </div>
       </div>
