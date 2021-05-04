@@ -132,7 +132,7 @@
         font-weight: 400;
         text-transform: uppercase;
         letter-spacing: 0.1em;
-        margin: 2em 0 1em;
+        margin: 1em 0 1em;
     }
     .is-center {
         text-align: center;
@@ -141,13 +141,16 @@
     color: white;
     }
     h2 {
-  color: white;
+  color: #fff;
   } 
-  h2 {
-  color: white;
-  } 
+ 
   .checked {
   color: #ff7d27;
+}
+.form-label
+{
+    font-weight: bolder;
+    font-size: 22px;
 }
 
     </style>
@@ -162,7 +165,7 @@
                   <a href="/user/<%=user_id%>/update-user">Update User</a>
                 </li>
                 <li>
-                  <a href="/user/<%=user_id%>/update-user">View Parking</a>
+                  <a href="/user/<%=user_id%>/bookings">View Parking</a>
                 </li>
                 <li>
                   <a href="/users/logout">Logout</a>
@@ -180,7 +183,8 @@
         <h2>Rating: <%= parking.avgrating %></h2>
         <h2><i class='fas fa-motorcycle'></i> : ₹<%= parking.price2w %>  </h2>
         <h2><i class="fa fa-car"></i> : ₹<%= parking.price4w %> </h2>
-        <h3><i class="material-icons">&#xe567;</i> Location: <%= parking.location %> </h3>
+        <h2><i class="fas fa-map-marker-alt"></i>&ensp; : <%= parking.location %> </h2>
+        <br>
         <h2>Leave a Review</h2>
         <form action="/user/<%=user_id%>/<%=parking._id%>/reviews" method="POST" class="mb-3 validated-form" novalidate>
             <fieldset class="starability-basic">
@@ -204,7 +208,7 @@
                     Looks good!
                 </div>
             </div>
-            <button class="btn btn-success">Submit</button>
+            <button class="btn btn-success" style="font-size: 24px; font-weight: bolder;">Submit</button>
         </form>
         <% for(let review of parking.reviews) { %>
             <div class="card mb-3 ">
@@ -213,7 +217,7 @@
                     <p class="starability-result" data-rating="<%=review.rating%>">
                         Rated: <%= review.rating %> stars
                     </p>
-                    <p class="card-text">Review: <%= review.body %></p>
+                    <p class="card-text" style="color: black;">Review: <%= review.body %></p>
                     <% if(review.author.equals(user_id)) {%> 
                         <form action="/user/<%=user_id%>/<%=parking._id%>/reviews/<%=review._id%>?_method=DELETE" method="POST">
                             <button class="btn btn-sm btn-danger">Delete</button>
