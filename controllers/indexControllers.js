@@ -64,12 +64,14 @@ async function registration(category, email) {
 router.post("/register", (req, res) => {
 	const { category, name, contact, email, password, password2 } = req.body;
 	if (password !== password2) {
-		res.redirect("/");
+		req.flash('error_msg','Passwords did not match');
+		res.redirect("/register");
 	} else {
 		registration(category, email)
 			.then((user) => {
 				if (user) {
-					res.render("register");
+					req.flash('error_msg','Email is already in use');
+					res.redirect("/register");
 				} else {
 					let newUser;
 					if (category === "user") {
@@ -97,6 +99,7 @@ router.post("/register", (req, res) => {
 							newUser
 								.save()
 								.then((user) => {
+									req.flash('success_msg','You are now registered and can login');
 									res.redirect("/login");
 								})
 								.catch((err) => console.log(err));
@@ -116,6 +119,7 @@ router.post("/user/login", (req, res, next) => {
 			return;
 		}
 		if (!user) {
+			req.flash('error_msg','Enter valid login credentials');
 			res.redirect("/login");
 			return;
 		}
@@ -129,6 +133,7 @@ router.post("/user/login", (req, res, next) => {
 				expiresIn: jwtExpirySeconds,
 			});
 			res.cookie("token", token, { maxAge: jwtExpirySeconds * 1000 });
+			req.flash('success_msg','Logged in successfully');
 			res.redirect(`/user/${user._id}`);
 		});
 	})(req, res, next);
@@ -142,6 +147,7 @@ router.post("/owner/login", (req, res, next) => {
 			return;
 		}
 		if (!owner) {
+			req.flash('error_msg','Enter valid login credentials');
 			res.redirect("/login");
 			return;
 		}
@@ -157,6 +163,7 @@ router.post("/owner/login", (req, res, next) => {
 			res.cookie("token_owner", token, {
 				maxAge: jwtExpirySeconds * 1000,
 			});
+			req.flash('success_msg','Logged in successfully');
 			res.redirect(`/owner/${owner._id}`);
 		});
 	})(req, res, next);
@@ -167,6 +174,7 @@ router.get("/users/logout", (req, res) => {
 	if(req.cookies && req.cookies.hasOwnProperty("token")) {
 		res.cookie("token","",{expires: new Date(0)});
 	}
+	req.flash('success_msg','Logged out successfully');
 	res.redirect("/");
 })
 
@@ -175,6 +183,7 @@ router.get("/owners/logout", (req, res) => {
 	if(req.cookies && req.cookies.hasOwnProperty("token_owner")) {
 		res.cookie("token_owner","",{expires: new Date(0)});
 	}
+	req.flash('success_msg','Logged out successfully');
 	res.redirect("/");
 })
 

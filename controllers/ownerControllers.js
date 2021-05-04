@@ -4,6 +4,9 @@ const passport = require("passport");
 const ParkingLocation=require("../models/Location")
 const bcrypt = require("bcryptjs");
 const Owner=require("../models/Owners")
+const BookedSlots=require('../models/BookedSlots');
+var Userdb=require('../models/Users');
+
  
 const mbxGeocoding = require("@mapbox/mapbox-sdk/services/geocoding");
 const mapBoxToken=process.env.MAPBOX_TOKEN;
@@ -51,6 +54,7 @@ router.post('/:id/update-owner',(req,res)=>{
             {
                 res.status(404).send({message:`cannot update user ${id}`})
             }else{
+                req.flash('success_msg','Details Updated Successfully');
                 res.redirect(`/owner/${id}`)
             }
         })
@@ -88,15 +92,31 @@ router.post('/:id',async(req,res)=>{
     const parking =new ParkingLocation(req.body.parking);
     parking.geometry=GeoData.body.features[0].geometry;
     parking.owner=req.owner._id;
+    parking.avgrating=0;
     await parking.save();
+    req.flash('success_msg','New Location added successfully');
     res.redirect(`/owner/${req.owner._id}`);
 })
 
 // Get parking details 
 router.get('/:id/:p_id',async(req,res)=>{
-    const parking=await ParkingLocation.findById(req.params.p_id);
+    const parking=await ParkingLocation.findById(req.params.p_id).populate({
+        path: 'reviews',
+        populate: {
+            path: 'author'
+        }
+    });
 	const id=req.params.id;
-    res.render('parkings/show',{parking,id});
+    const bookings= await BookedSlots.find({location: req.params.p_id,});
+    await Promise.all(bookings.map(async(booking)=> {
+        var usr = await Userdb.findById(booking.user);
+        booking.user_name= usr.name;
+        booking.user_contact= usr.contact;
+        booking.user_email= usr.email;
+        return booking;
+    }));
+    // console.log(bookings);
+    res.render('parkings/show',{parking,id,bookings});
 })
 
 module.exports = router;

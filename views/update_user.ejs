@@ -12,7 +12,7 @@
 			<!-- Bootstrap core CSS -->
 			<link rel="stylesheet" href="/css/bootstrap.min.css">
 			<!-- Material Design Bootstrap -->
-			<link rel="stylesheet" href="/css/mdb.min.css">
+			<!-- <link rel="stylesheet" href="/css/mdb.min.css"> -->
 			<!-- Your custom styles (optional) -->
 			<link rel="stylesheet" href="/css/style2.css">
 		<title>Update User</title>
@@ -20,12 +20,13 @@
 
 	<body>
 		<nav class="navbar sticky-top shadow p-2 mb-2">
-            <a class="navbar-brand" href="//user/<%=user._id%>/update-user"><i class="fas fa-arrow-circle-left"></i></a>
+            <a class="navbar-brand" href="/user/<%=user._id%>"><i class="fas fa-arrow-circle-left"></i></a>
 			</nav>
-
+			
 			<div class="updatebox">
 				<div id="bigLeftBox">
 					<div class="upbox">
+						
 		<form action="/user/<%=user._id%>/update-user"id="update_user" method="POST">
 			<input type="hidden" name="id" value="<%=user._id%>">
 			<label for="name" class="inp">Name</label>
