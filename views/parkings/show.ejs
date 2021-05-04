@@ -20,17 +20,16 @@
 
         <div class="row">
             <div class="col">
-                <div class="card bg-light mb-3" style="max-width: 800px;">
+                <div class="card bg-light c1 shadow p-3 mb-5 bg-white rounded" style="max-width: 800px;">
                     <div class="card-header"><h2><%= parking.title %></h2></div>
                     <div class="card-body">
                       <p class="card-text">
-                        <h2>rating: <%= parking.avgrating %></h2>
-                <h2>Description: <%= parking.description %> </h2>
-                <h2>price for 2 wheeler: <%= parking.price2w %> </h2>
-                <h2>no of slots for 2 wheeler: <%= parking.slot2w%> </h2>
-                <h2>price for 4 wheeler: <%= parking.price4w %> </h2>
-                <h2>no of slots for 2 wheeler: <%= parking.slot4w%> </h2>
-                <h3><%= parking.location %> </h3> 
+                        <h4>Description:&ensp; <%= parking.description %> </h4>
+                        <br>
+                        <h3 class="txt"><i class="fas fa-map-marker-alt"></i>: &ensp; <%= parking.location %> </h3> 
+                <h3 class="txt"><i class="fas fa-motorcycle"></i>:&ensp; Price- ₹<%= parking.price2w %> &emsp; Slots- <%= parking.slot2w%> </h3>
+                  <h3 class="txt"><i class="fas fa-car-side"></i>:&ensp; Price- ₹<%= parking.price4w %> &emsp; Slots- <%= parking.slot4w%> </h3>
+                  <h3 class="txt"><i class="far fa-star"></i>: &ensp; <%= parking.avgrating %></h3>
                       </p>
                     </div>
                   </div>
@@ -40,38 +39,72 @@
 
             </div>
             <div class="col-7">
-                <% for(var booking of bookings){ %>
-                    <p>User: <%= booking.user_name %><p>
-                    <p>User Email: <%=booking.user_email%></p>
-                    <% if(booking.user_contact){ %>
-                        <p>User Contact: <%=booking.user_contact%></p>
-                    <% } else { %> 
-                        <p>User Contact: Not Provided</p>
-                    <% } %>   
-                    <p>Vehicle Number: <%=booking.vehiclenumber%></p> 
-                    <p>Booked from: <%=booking.starttime%>  To <%= booking.endtime %> </p>
-                    <p>Booked on slot number: <%= booking.slotnumber %> </p> 
-                    <p>Price: <%= booking.price%></p>    
-                <% } %> 
-                <% for(var review of parking.reviews) { %>
+              <div class="card bg-light c1 shadow p-3 mb-5 bg-white rounded" style="max-width: 1000px; height: 400px;">
+                <div class="card-header"><h2>CUSTOMER HISTORY</h2></div>
+              <br>
+              <br>
+              <div class="table-responsive table-wrapper-scroll-y my-custom-scrollbar cd1" >
+                <table id="dtBasicExample" class="table table-striped table-sm ">
+                    <thead>
+                      <tr>
+                        <th scope="col">NAME</th>
+                        <th scope="col">EMAIL</th>
+                        <th scope="col">CONTACT</th>
+                        <th scope="col">VEHICLE NO.</th>
+                      </tr>
+                    </thead>
+
+                    <tbody>
+                        <% for(var booking of bookings){ %>
+                            <tr>
+                                <td> <%= booking.user_name %></td>
+                            <td> <%=booking.user_email%></td>
+                           <td> <% if(booking.user_contact){ %>
+                                <p><%=booking.user_contact%></p>
+                            <% } else { %> 
+                                <p>Not Provided</p>
+                            <% } %>   </td>
+                            <td><%=booking.vehiclenumber%></td> 
+                        <% } %> 
+                    </tr>
+                       
+                      
+                    </tbody>
+                  </table>
+                  </div>
+</div>
+               
 
             </div>
           </div>
    
   
-
-       
-        <div class="card mb-3 ">
+          <div class="card bg-light c1 shadow p-3 mb-5 bg-white rounded" style="max-width: 1800px;">
+            <div class="card-header" ><h2>REVIEWS</h2></div>
+          <% for(var review of parking.reviews) { %>
+        <div class="card bg-dark mb-3 ch1 ">
             <div class="card-body">
-                <h5 class="card-title"> <%= review.author.name%></h5>
+                <h5 class="card-title ch"> <%= review.author.name%></h5>
                 <p class="starability-result" data-rating="<%=review.rating%>">
                     Rated: <%= review.rating %> stars
                 </p>
-                <p class="card-text">Review: <%= review.body %></p>
+                <p class="card-text ch">Review: <%= review.body %></p>
             </div>
         </div>
         <% } %>
+          </div>
     
 </body>
+
+<script>
+   // Basic example
+$(document).ready(function () {
+  $('#dtBasicExample').DataTable({
+    "paging": simple // false to disable pagination (or any other option)
+  });
+  $('.dataTables_length').addClass('bs-select');
+});
+</script>
+
 
 </html>

@@ -8,6 +8,8 @@ const bcrypt = require("bcryptjs");
 const BookedSlots=require('../models/BookedSlots');
 const Location=require("../models/Location");
 const Review=require("../models/Review");
+const nodemailer = require('nodemailer');
+const hbs=require('nodemailer-handlebars');
 
 
 // Get form for update user
@@ -153,10 +155,50 @@ router.post('/:id/:p_id',async(req,res)=>{
         
 })
 
+
+//payment
 router.get('/:id/:p_id/payment',async(req,res)=> {
 
-    res.render('../views/payment',{slotno:req.app.get('slotno'),price:req.app.get('price')});
+    res.render('../views/payment',{slotno:req.app.get('slotno'),price:req.app.get('price'),user_id:req.params.id,parking_id:req.params.p_id});
 })
+
+var transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+        user: 'team1parking@gmail.com',
+        pass: 'Groupt1@5'
+    }
+});
+
+transporter.use('compile',hbs({
+    viewEngine: {
+        extName: '.hbs',
+        partialsDir: 'views',
+        layoutsDir: 'views',
+        defaultLayout: ''
+    },
+    viewPath: 'views',
+}));
+
+router.post('/:id/:p_id/payment',(req,res)=>{
+    var mailOptions = {
+        from: 'team1parking@gmail.com',
+        to: req.body.email,
+        subject: 'Your Bill',
+        template:'bill'
+    };   
+    
+    transporter.sendMail(mailOptions, function(error, info) {
+        if (error) {
+            console.log(error);
+        } else {
+            console.log('Email sent: ' + info.response);
+            res.redirect(`/user/${req.params.id}`);
+        }
+    });
+   
+});
+
 
 //get request for review and ratings
 
@@ -209,7 +251,6 @@ router.delete('/:id/:p_id/reviews/:reviewId', async (req, res) => {
     req.flash('success_msg','successfully deleted review');
     res.redirect(`/user/${req.params.id}/${req.params.p_id}/reviews`);
 })
-
 
 
 
