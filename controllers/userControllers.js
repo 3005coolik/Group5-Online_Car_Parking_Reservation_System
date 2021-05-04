@@ -77,9 +77,10 @@ router.get('/:id/bookings',async(req,res)=> {
     await Promise.all(bookings.map(async(booking)=> {
         var loc = await Location.findById(booking.location);
         booking.loc= loc.location;
+        booking.title=loc.title;
         return booking;
     }));
-    res.render('../views/booking',{bookings});
+    res.render('../views/booking',{bookings,user_id:req.params.id});
 })
 
 // Get request for date and time entry
@@ -138,7 +139,7 @@ router.post('/:id/:p_id',async(req,res)=>{
     else{
         req.app.set('slotno',slotno);
         req.app.set('price',price);
-        const Slots = new BookedSlots({
+        const Slots = {
             location:req.params.p_id,
             slotnumber:slotno,
             starttime:newStartTime,
@@ -147,9 +148,9 @@ router.post('/:id/:p_id',async(req,res)=>{
             vehicletype:req.body.vtype,
             price,
             user:req.params.id
-        }) ;
-        await Slots.save()
-        req.flash('success_msg','successfully booked slot');
+        };
+        req.app.set('Slots',Slots);
+        req.flash('success_msg','Please complete your payment process!');
         res.redirect(`/user/${req.params.id}/${req.params.p_id}/payment`);
     }
         
@@ -180,7 +181,7 @@ transporter.use('compile',hbs({
     viewPath: 'views',
 }));
 
-router.post('/:id/:p_id/payment',(req,res)=>{
+router.post('/:id/:p_id/payment',async (req,res)=>{
     var mailOptions = {
         from: 'team1parking@gmail.com',
         to: req.body.email,
@@ -188,11 +189,14 @@ router.post('/:id/:p_id/payment',(req,res)=>{
         template:'bill'
     };   
     
-    transporter.sendMail(mailOptions, function(error, info) {
+    transporter.sendMail(mailOptions, async function(error, info) {
         if (error) {
             console.log(error);
         } else {
             console.log('Email sent: ' + info.response);
+            var Slots= req.app.get('Slots');
+            Slots= new BookedSlots(Slots);
+            await Slots.save();
             res.redirect(`/user/${req.params.id}`);
         }
     });
