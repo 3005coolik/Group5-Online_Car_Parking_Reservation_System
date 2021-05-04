@@ -4,19 +4,108 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+ <!-- Google Fonts Roboto -->
+ <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+ <!-- Bootstrap core CSS -->
+ <link rel="stylesheet" href="/css/bootstrap.min.css">
+ <!-- Material Design Bootstrap -->
+ <link rel="stylesheet" href="/css/mdb.min.css">
+ <!-- Your custom styles (optional) -->
+ 
+
+ <script src="https://api.mapbox.com/mapbox-gl-js/v2.1.1/mapbox-gl.js"></script>
+ <link href="https://api.mapbox.com/mapbox-gl-js/v2.1.1/mapbox-gl.css" rel="stylesheet" />
     <title>Booking</title>
+    <style>
+        body{
+            height: 100%;
+    
+            background-color:  #242729;;
+ 
+        }
+        .navbar
+{
+    background-color: #fe8118;
+}
+.fa-arrow-circle-left
+{
+    color: #000;
+    font-size: 45px;
+    margin-left: 20px;
+    transition: 0.3s;
+    animation-name: onloadAnim;
+    animation-duration: 1s;
+}
+.fa-arrow-circle-left:hover
+{
+    color:#fff;
+}
+
+
+
+   .tableFixHead {
+        overflow-y: auto;
+        height: 747px;
+      }
+     
+      table {
+        border-collapse:collapse;
+        width: 95%;
+        height: 50%;
+      }
+      .tableFixHead thead th {
+        position: sticky;
+        top: 0;
+      }
+      th{
+      text-align:center;
+       background-color: black;
+       border:0px solid #ccc;
+      }
+      
+      td {
+        padding: 10px;
+        border: 0px solid #ccc;
+      }
+      .t1{
+        font-size:20px !important ;
+      }
+        
+    </style>
 </head>
-<body>
-    <% for(var booking of bookings){ %>
-    <div class="card" style="background-color: aqua;">
-        <div class="card-body">
-                <h1><%= booking.loc %> </h1>
-                <p><b>SlotNo. </b> <%= booking.slotnumber %>  </p>
-                <p> <b>Start Time</b> <%= booking.starttime %> </p>
-                <p> <b> End Time</b> <%= booking.endtime %> </p>
-                <p> <b> vehicle Number</b> <%= booking.vehiclenumber %> </p>
-        </div>
-      </div>
-      <% } %> 
+<body >
+  <nav class="navbar sticky-top shadow p-2 mb-2">
+    <a class="navbar-brand" href="/user/<%=user_id%>"><i class="fas fa-arrow-circle-left"></i></a>
+</nav>
+<br>
+
+    <div class="tableFixHead">    
+    <table align="center">
+        <thead>
+          <tr>
+            <th style = "color: #fff;"><h3>Parking Title</h3></th>  
+            <th style = "color: #fff;"><h3>Location</h3></th>
+            <th style = "color: #fff;"><h3>Slot No.</h3></th>
+            <th style = "color: #fff;"><h3>Start Time</h3></th>
+            <th style = "color: #fff;"><h3>End Time</h3></th>
+            <th style = "color: #fff;" ><h3>Vehicle No.</h3></th>
+          </tr>
+        </thead>
+        <tbody>
+            <% for(var booking of bookings){ %>
+          <tr>    
+            <td style = "color: #fff;" align="center"><h4 class="t1"><%= booking.title %></h4></th>
+            <td style = "color: #fff;" align="center"><h4 class="t1"><%= booking.loc %></h4></th>
+            <td style = "color: #fff;" align="center"><h4 class="t1"><%= booking.slotnumber %></h4></td>
+            <td style = "color: #fff;" align="center"><h4 class="t1"><%= booking.starttime %></h4></td>
+            <td style = "color: #fff;" align="center"><h4 class="t1"><%= booking.endtime %></h4></td>
+            <td style = "color: #fff;" align="center"><h4 class="t1"><%= booking.vehiclenumber %></h4></td>
+          </tr>
+          <% } %>  
+      </table>
+    </div>
 </body>
 </html>

@@ -77,9 +77,10 @@ router.get('/:id/bookings',async(req,res)=> {
     await Promise.all(bookings.map(async(booking)=> {
         var loc = await Location.findById(booking.location);
         booking.loc= loc.location;
+        booking.title=loc.title;
         return booking;
     }));
-    res.render('../views/booking',{bookings});
+    res.render('../views/booking',{bookings,user_id:req.params.id});
 })
 
 // Get request for date and time entry
