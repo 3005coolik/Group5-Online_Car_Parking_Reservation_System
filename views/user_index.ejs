@@ -91,6 +91,7 @@
                         <div class="card-body">
                           <h5 class="card-title"><%= parking.title %></h5>
                           <p class="card-text"><%= parking.description %></p>
+                          <p class="card-text"><i class="fas fa-map-marker-alt"></i>&emsp;: <%= parking.location %></p>
                           <p class="card-text txt"> <i class="fas fa-motorcycle"></i>: ₹ <%= parking.price2w %></p>
                           <p class="card-text txt"> <i class="fas fa-car-side"></i>: ₹ <%= parking.price4w %></p>
                           <p class="card-text"><a class="cli" href="/user/<%= user_id %>/<%=parking._id%>">
