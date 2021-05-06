@@ -1,3 +1,39 @@
+@media only screen and (max-width: 1200px) {
+  .col-sm-12{
+    height: 30rem !important;
+  }
+  
+  .col-md-12
+  {
+    height: 30rem !important;
+  }
+
+  .mapdown{
+    margin-top: -2%!important;
+    z-index: 1;
+  }
+  .maptop{
+    margin-bottom: -20%!important;
+  }
+     
+  .imgcard {
+    width: 0!important;
+    height: 0 !important;
+    opacity: 0;
+    
+
+  }
+   
+  .nabar{
+    left: 75% !important;
+  }
+  
+}
+
+
+
+
+
 #mapage{
     background-color:#191A1A;
     background-size: cover;
@@ -8,24 +44,27 @@
       
         
     }
+
+    
     .navbar
     {
         background-color: #fe8118;
+        width: 100%;
         
     }
     .nabar  {
         height: auto;
-        width: 135.8px;
+        
         text-align: center;
   list-style: none;
   font: normal bold 13px/1em Arial, Verdana, Helvetica;
   padding: 0;
-  
   background-color:none;
-  margin-right:10px !important;
+  margin-right:10rem !important;
   position: absolute;
-  left:92%;
+  left:90%;
   top:15px;
+ 
 
 
     }
@@ -97,47 +136,30 @@
     }
 
 
+   .mapdown{
+     margin: auto;
+   } 
     
-    
-    .split {
-        height: 100%;
-        width: 50%;
-        position: fixed;
-        z-index: 1;
-        top: 0;
-        overflow-x: hidden;
-        padding-top: 20px;
-      }
-      
-      /* Control the left side */
-      .left {
-        left: 0;
-        margin-top: 60px;
-        
-      }
-      
-      /* Control the right side */
-      .right {
-        right: 0;
-        
-      }
+    .card-body{
+      margin-left: 7%;
+    } 
 
       .card
       {
         box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
-        margin-left: -100px;
+        margin: auto; 
         
       }
       .card-title
       {
           font-weight: bolder;
-          font-size: 30px;
+          font-size: 2rem;
           margin-bottom: 25px;
       }
       
       .card-text
       {
-          font-size: larger;
+          font-size: 1rem;
           font-weight: bold;
           color:gray;
           margin-top:-10px;
@@ -147,7 +169,7 @@
       {
         display: inline-block;
         margin-right:40px;
-        font-size: 25px;
+        font-size: 1rem;
       }
      .cli
      {
@@ -177,7 +199,8 @@
 #entrypage
 {
   background-color: #343A40;
-  overflow: hidden;
+  width: 100%;
+   
 }
 .rect
 {
