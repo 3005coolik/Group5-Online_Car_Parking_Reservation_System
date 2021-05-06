@@ -124,7 +124,7 @@ map.on('load', function () {
     // description HTML from its properties.
     map.on('click', 'unclustered-point', function (e) { 
         const { pid,title,description } = JSON.parse(e.features[0].properties.data);
-        const popUpMarkup= `<strong><a href="/user/${uid}/${pid}">${title}</a><strong>
+        const popUpMarkup= `<strong><a href="/user/${uid}/${pid}">${title}</a></strong><br><strong><a href="/user/${uid}/${pid}/reviews">Add feedback</a></strong>
         <p>${description}...</p>`;
         const coordinates = e.features[0].geometry.coordinates.slice();
 
