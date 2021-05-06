@@ -1,177 +1,428 @@
+
+
+
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<html>
+<head>
+	
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+   		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+     	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+		 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+		 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
-      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
-      <!-- Google Fonts Roboto -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
-  <!-- Bootstrap core CSS -->
-  <link rel="stylesheet" href="css/bootstrap.min.css">
-  <!-- Material Design Bootstrap -->
-  <!-- <link rel="stylesheet" href="css/mdb.min.css"> -->
-  <!-- Your custom styles (optional) -->
-  <link rel="stylesheet" href="css/style.css">
-    <title>Register</title>
-      
-
-
-  </head>
-  <%- include('./partials/messages.ejs') %>
-
-  <body id="signup-page">
-      
-      <nav class="navbar sticky-top">
-  <a class="navbar-brand" href="index.html"><i class="fas fa-car"></i></a>
-  <ul class="navbar-nav">
-      <li class="nav-item">
-        <a class="nav-link" href="/#contact-us" style="color:black; font-size:120%;"><b>Contact us</b></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/" style="color:black; font-size:120%;"><b>About us</b></a>
-      </li>
-      <li class="nav-item">
-          <div class="box">
-        <a class="nav-link nl1" href="/login" style="color:black; font-size:120%;"><b>Login</b></a>
-          </div>
-      </li>
-            <li class="nav-item">
-            <div class="box box1">
-        <a class="nav-link nl2" style="color:black; font-size:120%;"><b>Sign up</b></a>
-                </div>
-      </li>
-       </ul>
-</nav>
-
-
- <div class="login-box">
-  
-     <div id="bigLeftBox">
-          <h2 style="color:#fff; font-size: 60px; margin:50px 50px; font-weight: 500; text-shadow: 2px 2px 4px #000000;"> Welcome to 
-             <br> PyP: Plan your Park
-         </h2>
-    </div>
-     
-<div id="bigRightBox">
-     <div class="loginbox signupbox">
-      <% if(success_msg!=""){ %> 
-
-        <div class="alert alert-success alert-dismissible fade show" role="alert">
-          <%= success_msg%>
-          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-      
-      <% } %> 
-      
-      
-      <% if(error_msg!=""){ %> 
-      
-        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-          <%= error_msg%>
-          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-      
-      <% } %>
-       <h1 class="title">Sign up your Account</h1>
-        <form action="/register" method="POST" id="register">
-          <label for="name" class="inpt">Name</label>
-          <input
-            type="name"
-            id="name"
-            name="name"
-            placeholder="Enter Name"
-            required
-          /><label for="email" class="inpt">Email</label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-			class="email"
-            placeholder="Enter Email"
-            required
-          />
-		  <div class="form-row">
-			<div class="form-group col-md-6">
-          <label for="contact" class="inpt">Contact No.</label>
-          <input
-            type="contact"
-            id="contact"
-            name="contact"
-            placeholder="Enter Phone No."
-            required
-          />
-		  </div>
-		  <div class="form-group col-md-6">
-          <label for="category" class="inpt">Category</label>
-          <select name="category" id="category" onchange="changeaction()">
-            <option value="user" class="l1">User</option>
-            <option value="owner" class="l1">Parking Owner</option>
-          </select>
-		</div></div>
-		  <div class="form-row">
-		  <div class="form-group col-md-6">
-          <label for="password" class="inpt">Password</label>
-          <input
-            type="password"
-            id="password"
-            name="password"
-            placeholder="Create Password"
-            required
-          />
-		</div>
-		  <div class="form-group col-md-6">
-          <label for="password2" class="inpt">Confirm Password</label>
-          <input
-            type="password"
-            id="password2"
-            name="password2"
-            placeholder="Confirm Password"
-            required
-          /></div></div>
-		  
-            <p class= "al3" style="color:black; font-weight: 400;">Already registered? <a class="al1" style="color:white;" href="/login">Login here</a></p>
-
-            <div class="google-btn" id="gbtn" >
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
 		
-              <div class="google-icon-wrapper">
-                
-                <img class="google-icon" src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg"/>
-              </div>
-              <p class="btn-text"><a id="googlebutton" href="/auth/google" class="btn red darken-1"><b>Sign in with google</b></a></p>
-            
-              </div>
+		<link rel="stylesheet" href="css/bootstrap.min.css">
+		
+		<title>Login</title>
+	</head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
 
-            <input type="submit" value="Sign Up"/>
-            
-        </form>
-        </div>
-	            </div>
-      </div>
-      
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-      <script src="https://kit.fontawesome.com/4077c6ef6a.js" crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-		<script>
-      function changeaction() {
+.topnav {
+  overflow: hidden;
+  background-color: #fe8118;
+}
 
-							const category = document.getElementById("category").value;
-									if (category == "user") { 
-										  document.getElementById('gbtn').style.display = "block";
-									} else{
-										  document.getElementById('gbtn').style.display = "none";
-									}
-						}
-		</script>
-	</body>
+.topnav a {
+  float: right;
+  display: block;
+  color: #000;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: bolder;
+  animation-name: onloadAnim !important;
+    animation-duration: 1s !important;
+     
+}
+
+.topnav :first-child
+{
+	float: left !important;
+	
+	
+}
+.topnav a:hover {
+  background-color: black;
+  color: white;
+}
+.topnav a:first-child:hover {
+  background-color: none !important;
+}
+
+.topnav a.active {
+  background-color: #000;
+  color: white;
+}
+
+.topnav .icon {
+  display: none;
+}
+
+@media screen and (max-width: 600px) {
+  .topnav a:not(:first-child) {display: none;}
+  .topnav a.icon {
+    float: right;
+    display: block;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .topnav.responsive {position: relative;}
+  .topnav.responsive .icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  .topnav.responsive a {
+    float: none;
+    display: block;
+    text-align: left;
+  }
+}
+
+
+:root {
+  --input-padding-x: 1.5rem;
+  --input-padding-y: .75rem;
+}
+
+body {
+  background-image: url("/css/img/bg3.png");
+  background-blend-mode: darken;
+     background-size:cover;
+    background-repeat: no-repeat;
+   
+      background-position: top;
+  background-color: rgba(10, 9, 9, 0.38);
+}
+
+
+.card-signin {
+  border: 0;
+  border-radius: 1rem;
+  box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  background-color:  rgba(149, 141, 141, 0.81);
+}
+
+.card-signin .card-title {
+  margin-bottom: 2rem;
+  font-weight: 300;
+  font-size: 1.5rem;
+}
+
+.card-signin .card-img-left {
+  width: 45%;
+  /* Link to your background image using in the property below! */
+  background: scroll center url('/css/img/bg2.jpg');
+  background-size: cover;
+}
+
+.card-signin .card-body {
+  padding: 2rem;
+}
+
+.form-signin {
+  width: 100%;
+}
+
+.form-signin .btn {
+  font-size: 80%;
+  border-radius: 5rem;
+  letter-spacing: .1rem;
+  font-weight: bold;
+  padding: 1rem;
+  transition: all 0.2s;
+}
+
+.form-label-group {
+  position: relative;
+  margin-bottom: 1rem;
+}
+
+.form-label-group input {
+  height: auto;
+  border: none;
+ 
+  border-bottom: 2px solid #fff;
+    background: transparent !important;
+    outline: none;
+	color:#fff !important;
+	font-size: 22px !important;
+}
+
+.form-label-group>input,
+.form-label-group>label {
+  padding: var(--input-padding-y) var(--input-padding-x);
+}
+
+.form-label-group>label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 100%;
+  margin-bottom: 0;
+  /* Override default `<label>` margin */
+  line-height: 1.5;
+  color: #fff;
+  font-size: 20px;
+ 
+   
+  transition: all .1s ease-in-out;
+}
+
+.l1
+{
+    color: #000 !important;
+}
+
+.inp
+{
+	
+  line-height: 1.5;
+  color: #fff;
+  font-size: 20px;
+  border: 1px solid;
+  border-radius: .25rem;
+  transition: all .1s ease-in-out;
+}
+
+.form-label-group input::-webkit-input-placeholder {
+  color: transparent;
+}
+
+.form-label-group input:-ms-input-placeholder {
+  color: transparent;
+}
+
+.form-label-group input::-ms-input-placeholder {
+  color: transparent;
+}
+
+.form-label-group input::-moz-placeholder {
+  color: transparent;
+}
+
+.form-label-group input::placeholder {
+  color: transparent;
+}
+
+.form-label-group input:not(:placeholder-shown) {
+  padding-top: calc(var(--input-padding-y) + var(--input-padding-y) * (2 / 3));
+  padding-bottom: calc(var(--input-padding-y) / 3);
+}
+
+.form-label-group input:not(:placeholder-shown)~label {
+  padding-top: calc(var(--input-padding-y) / 3);
+  padding-bottom: calc(var(--input-padding-y) / 3);
+  font-size: 12px;
+  color: #777;
+}
+
+.btn-google {
+  color: white;
+  background-color: #ea4335;
+}
+
+.btl{
+	color:black;
+	background-color: #fe8118;
+	font-size: 18px !important;
+	font-weight: bold !important;
+	
+}
+
+.btl:hover{
+	color:black;
+	background-color: #fff;
+	font-size: 22px;
+	font-weight: bolder;
+}
+
+.alert
+{
+	margin-top: 0%;
+}
+</style>
+</head>
+<body>
+
+<div class="topnav" id="myTopnav">
+<a class="navbar-brand" href="index.html"><i class="fas fa-car" style="font-size: 32px;"></i></a>
+<a> </a>
+<a> </a>
+  <a href="/#contact-us">Contact Us</a>
+  <a href="/">About us</a>
+  <a class="active" onclick="return false;" style="color: #fff !important;" >Signup</a>
+  <a href="/login">Login</a>
+  <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+    <i class="fa fa-bars"></i>
+  </a>
+</div>
+
+<!-- This snippet uses Font Awesome 5 Free as a dependency. You can download it at fontawesome.io! -->
+
+	<div class="container">
+    
+<% if(success_msg!=""){ %> 
+
+  <div class="alert alert-success alert-dismissible fade show" role="alert">
+    <%= success_msg%>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+
+<% } %> 
+
+
+<% if(error_msg!=""){ %> 
+
+  <div class="alert alert-danger alert-dismissible fade show" role="alert">
+      <%= error_msg%>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+
+<% } %>
+
+    
+	  <div class="row">
+		<div class="col-lg-10 col-xl-10 mx-auto" >
+		  <div class="card card-signin flex-row my-5">
+			<div class="card-img-left d-none d-md-flex">
+			   <!-- Background image for card set in CSS! -->
+         
+			</div>
+			<div class="card-body">
+			  <h5 class="card-title text-left" style="color: #fff; font-weight: bolder;">Signup into your account</h5>
+			  
+			  
+			  <form class="form-signin" action="/register" method="POST" id="register">
+          <div class="form-label-group">
+            <input type="name" id="name" name="name" class="form-control" placeholder="Enter name" required>
+            <label for="name">Enter name</label>
+           
+          </div>
+				<div class="form-label-group">
+				  <input type="email" id="email" name="email" class="form-control" placeholder="Email address" required>
+				  <label for="email">Email address</label>
+				 
+				</div>
+
+       
+    <div class="form-row">
+    <div class="form-label-group col-md-6">
+      <input
+      type="contact"
+      id="contact"
+      name="contact"
+      placeholder="Enter Phone No."
+      pattern="[0-9]{10}" 
+      maxlength="10"
+          style="width: 90% !important;"
+          required/>
+          <label for="contact">Enter contact</label>
+    </div>
+    <div class="col-md-6">
+      <select name="role" id="category" class="inp" onchange="changeaction()" style="height: 50px;
+			line-height: 1.5; color: #fff; padding-left: 25px; width: 100%; font-size: 20px;
+			border: none; border-bottom: 2px solid #fff; background: transparent !important; outline: none;">
+				
+				<option value="user" class="l1">User</option>
+				<option value="owner" class="l1">Parking Owner</option>
+			</select>
+  </div>
+</div>
+    <div class="form-row">
+    <div class="form-label-group col-md-6">
+        
+        <input
+          type="password"
+          id="password"
+          name="password"
+          placeholder="Create Password"
+          style="width: 90% !important;"
+          required
+        />
+        <label for="password" class="inpt">Password</label>
+  </div>
+    <div class="form-label-group col-md-6">
+       
+        <input
+          type="password"
+          id="password2"
+          name="password2"
+          placeholder="Confirm Password"
+          style="width: 90% !important;"
+          required
+        />
+        <label for="password2" class="inpt">Confirm Password</label>
+      </div></div>
+   
+				
+			
+		
+				
+  <br>
+  
+  <br>
+				<button class="btn btn-lg btn-primary btn-block btl" type="submit" value="Login">SignUp into account</button>
+				<br>
+				
+          <p class= "al0 text-center" style="color:black; font-weight: 400; margin-top: 10px; font-size: 20px;" >Existing user?  	
+            <a class="al1" style="color:white;" href="/login">Login here</a></p>
+				<hr class="my-4">
+      </form>
+			<a href="/auth/google" style="text-decoration: none;"><button class="btn btn-lg btn-google btn-block text-uppercase" id="googlebutton"  style="border-radius: 25px;"><i class="fab fa-google mr-2"></i> Sign up with Google</button></a>	
+
+				
+			  
+			</div>
+		  </div>
+		</div>
+	  </div>
+	</div>
+  
+  
+
+<script>
+function myFunction() {
+  var x = document.getElementById("myTopnav");
+  if (x.className === "topnav") {
+    x.className += " responsive";
+  } else {
+    x.className = "topnav";
+  }
+}
+</script>
+
+<script src="https://kit.fontawesome.com/4077c6ef6a.js" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script>
+  function changeaction() {
+
+          const category = document.getElementById("category").value;
+              if (category == "user") { 
+                  document.getElementById('googlebutton').style.display = "block";
+              } else{
+                  document.getElementById('googlebutton').style.display = "none";
+              }
+        }
+</script>		
+
+
+</body>
 </html>
+

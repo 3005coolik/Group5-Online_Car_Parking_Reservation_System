@@ -12,13 +12,16 @@
          <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
          <!-- Google Fonts Roboto -->
-         <link rel="stylesheet" href="css/style.css">
+         <!-- <link rel="stylesheet" href="/css/style.css"> -->
          <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
          <!-- Bootstrap core CSS -->
          <link rel="stylesheet" href="/css/bootstrap.min.css">
          <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
          <link rel="stylesheet" href="/css/stars.css">
          
+        <script src='https://api.mapbox.com/mapbox-gl-js/v2.2.0/mapbox-gl.js'></script>
+        <link href='https://api.mapbox.com/mapbox-gl-js/v2.2.0/mapbox-gl.css' rel='stylesheet' />
+
     <title>Show</title>
 </head>
 <style>
@@ -132,7 +135,7 @@
         font-weight: 400;
         text-transform: uppercase;
         letter-spacing: 0.1em;
-        margin: 2em 0 1em;
+        margin: 1em 0 1em;
     }
     .is-center {
         text-align: center;
@@ -141,13 +144,16 @@
     color: white;
     }
     h2 {
-  color: white;
+  color: #fff;
   } 
-  h2 {
-  color: white;
-  } 
+ 
   .checked {
   color: #ff7d27;
+}
+.form-label
+{
+    font-weight: bolder;
+    font-size: 22px;
 }
 
     </style>
@@ -162,7 +168,7 @@
                   <a href="/user/<%=user_id%>/update-user">Update User</a>
                 </li>
                 <li>
-                  <a href="/user/<%=user_id%>/update-user">View Parking</a>
+                  <a href="/user/<%=user_id%>/bookings">View Parking</a>
                 </li>
                 <li>
                   <a href="/users/logout">Logout</a>
@@ -176,11 +182,22 @@
     
 	<div class="container">
         <%- include('./partials/messages.ejs') %>
-		<h1>Parking: <%= parking.title %> </h1>
-        <h2>Rating: <%= parking.avgrating %></h2>
-        <h2><i class='fas fa-motorcycle'></i> : ₹<%= parking.price2w %>  </h2>
-        <h2><i class="fa fa-car"></i> : ₹<%= parking.price4w %> </h2>
-        <h3><i class="material-icons">&#xe567;</i> Location: <%= parking.location %> </h3>
+        <div class="row">
+            <div class="col">
+                <h1>Parking: <%= parking.title %> </h1>
+                <h2>Rating: <%= parking.avgrating %></h2>
+                <h2><i class='fas fa-motorcycle'></i> : ₹<%= parking.price2w %>  </h2>
+                <h2><i class="fa fa-car"></i> : ₹<%= parking.price4w %> </h2>
+                <h2><i class="fas fa-map-marker-alt"></i>&ensp; : <%= parking.location %> </h2>
+                <br>
+            </div>
+            <div class="col">
+                <div id='map' style='width: 100%; height: 250px;'></div>
+            </div>
+        </div>
+        
+        
+		
         <h2>Leave a Review</h2>
         <form action="/user/<%=user_id%>/<%=parking._id%>/reviews" method="POST" class="mb-3 validated-form" novalidate>
             <fieldset class="starability-basic">
@@ -204,7 +221,7 @@
                     Looks good!
                 </div>
             </div>
-            <button class="btn btn-success">Submit</button>
+            <button class="btn btn-success" style="font-size: 24px; font-weight: bolder;">Submit</button>
         </form>
         <% for(let review of parking.reviews) { %>
             <div class="card mb-3 ">
@@ -213,7 +230,7 @@
                     <p class="starability-result" data-rating="<%=review.rating%>">
                         Rated: <%= review.rating %> stars
                     </p>
-                    <p class="card-text">Review: <%= review.body %></p>
+                    <p class="card-text" style="color: black;">Review: <%= review.body %></p>
                     <% if(review.author.equals(user_id)) {%> 
                         <form action="/user/<%=user_id%>/<%=parking._id%>/reviews/<%=review._id%>?_method=DELETE" method="POST">
                             <button class="btn btn-sm btn-danger">Delete</button>
@@ -223,7 +240,22 @@
             </div>
             <% } %>
 	</div>
-    
+    <script>
+        const parking=<%- JSON.stringify(parking) %>;
+        const popUpMarkup= `<h3>${parking.title}</h3><p>${parking.location}</p>`;
+        mapboxgl.accessToken = 'pk.eyJ1IjoicGRwMDkxMSIsImEiOiJja2prMmQ4cDcwODV4MndsZnRnaGs3eGxoIn0.65yXbqRYG44QmlsrhdiB1A';
+        const map = new mapboxgl.Map({
+        container: 'map', // container ID
+        style: 'mapbox://styles/mapbox/streets-v11', // style URL
+        center: parking.geometry.coordinates, // starting position [lng, lat]
+        zoom: 8 // starting zoom
+        });
+        map.addControl(new mapboxgl.NavigationControl());
+        // Create a default Marker and add it to the map.
+        new mapboxgl.Marker()
+        .setLngLat(parking.geometry.coordinates) 
+        .addTo(map);
+        </script>
     <script>
         (function () {
             'use strict'
