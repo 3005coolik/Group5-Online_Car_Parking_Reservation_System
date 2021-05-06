@@ -94,7 +94,7 @@
             type="email"
             id="email"
             name="email"
-			class="email"
+			      class="email"
             placeholder="Enter Email"
             required
           />
@@ -106,6 +106,8 @@
             id="contact"
             name="contact"
             placeholder="Enter Phone No."
+            pattern="[0-9]{10}" 
+            maxlength="10"
             required
           />
 		  </div>
@@ -124,6 +126,7 @@
             id="password"
             name="password"
             placeholder="Create Password"
+            minlength="8"
             required
           />
 		</div>
@@ -134,6 +137,7 @@
             id="password2"
             name="password2"
             placeholder="Confirm Password"
+            minlength="8"
             required
           /></div></div>
 		  

@@ -14,7 +14,6 @@
 	</head>
 
 
-
 <style>
     body {
         font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
@@ -78,8 +77,8 @@
     }
 
     .invoice-box table tr.top table td.title {
-        font-size: 45px;
-        line-height: 45px;
+        font-size: 30px;
+        line-height: 30px;
         color: #333;
     }
 
@@ -127,17 +126,20 @@
 </style>
 
 	<body>
-
+        
+        
+        
+        
+           
+        
 		<div class="invoice-box">
 			<table>
 				<tr class="top">
 					<td colspan="2">
 						<table>
 							<tr class="heading">
-								<td class="title">
-									Booking Confirmation
-								</td>
-							</tr>
+                                <td style="font-size:30px ; text-align:center" >Invoice</td>
+                            </tr>
 						</table>
 					</td>
 				</tr>
@@ -147,12 +149,16 @@
 						<table>
 							<tr>
 								<td>
-									PlanYourPark, Inc.<br />
-									DAIICT,<br />
-									Gandhinagar, Gujarat
+									Dear <%= user_name %>,<br>
+                                    Your Parking Slot is booked from <br> Start Time: <b> <%= Slots.starttime %> </b> to End Time: <b><%= Slots.endtime %></b> <br>
+                                    at location <b> <%= loc_name %></b> for <b><%= Slots.vehicletype %></b> wheeler vehicle number <b><%= Slots.vehiclenumber %></b>.
+
 								</td>
 
 								<td>
+									<span id="fname"></span>
+                                    <span id="mail"></span>
+                                   
 								</td>
 							</tr>
 						</table>
@@ -170,9 +176,21 @@
 				</tr>
 
 				<tr class="heading">
-					<td>Your Slot has been booked!!!</td>
+					<td>Item</td>
+
+					<td>Price</td>
 				</tr>
 
+				<tr class="item last">
+					<td>Parking Slot Number: <b><%= Slots.slotnumber %></b></td>
+					<td>₹<%= Slots.price %></td>
+				</tr>
+
+				<tr class="total">
+					<td></td>
+
+					<td>Total: ₹<%= Slots.price %></td>
+				</tr>
 			</table>
 		</div>
 	</body>

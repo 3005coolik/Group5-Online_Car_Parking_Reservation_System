@@ -10,6 +10,9 @@ const Location=require("../models/Location");
 const Review=require("../models/Review");
 const nodemailer = require('nodemailer');
 const hbs=require('nodemailer-handlebars');
+const fs = require('fs');
+const path = require('path');
+const ejs=require('ejs');
 
 
 // Get form for update user
@@ -167,26 +170,20 @@ var transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
         user: 'team1parking@gmail.com',
-        pass: 'Groupt1@5'
+        pass: process.env.EMAIL_PASS
     }
 });
 
-transporter.use('compile',hbs({
-    viewEngine: {
-        extName: '.hbs',
-        partialsDir: 'views',
-        layoutsDir: 'views',
-        defaultLayout: ''
-    },
-    viewPath: 'views',
-}));
-
 router.post('/:id/:p_id/payment',async (req,res)=>{
+    var Slots= req.app.get('Slots');
+    var user_detail = await Userdb.findById(Slots.user);
+    var location_detail= await Location.findById(Slots.location);
+    var email_content= await ejs.renderFile(path.join(__dirname, '..', 'views', 'invoice.ejs'),{Slots,user_name:user_detail.name,loc_name:location_detail.location});
     var mailOptions = {
         from: 'team1parking@gmail.com',
         to: req.body.email,
         subject: 'Your Bill',
-        template:'bill'
+        html: email_content
     };   
     
     transporter.sendMail(mailOptions, async function(error, info) {
@@ -194,7 +191,6 @@ router.post('/:id/:p_id/payment',async (req,res)=>{
             console.log(error);
         } else {
             console.log('Email sent: ' + info.response);
-            var Slots= req.app.get('Slots');
             Slots= new BookedSlots(Slots);
             await Slots.save();
             res.redirect(`/user/${req.params.id}`);
