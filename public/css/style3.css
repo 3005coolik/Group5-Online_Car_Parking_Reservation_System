@@ -28,6 +28,13 @@
     left: 75% !important;
   }
   
+  #map{
+    width:90% !important;
+
+    position: absolute !important;
+
+
+  }
 }
 
 
