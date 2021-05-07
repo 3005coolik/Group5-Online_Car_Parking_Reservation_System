@@ -1,4 +1,4 @@
-[![Code Grade](https://www.code-inspector.com/project/22363/status/svg)](https://www.code-inspector.com/project/22363/score/svg)
+[![Code Grade](https://www.code-inspector.com/project/22363/score/svg)](https://frontend.code-inspector.com/public/project/22363/Group5-Online_Car_Parking_Reservation_System/dashboard)
 
 
 # Group5-Online_Car_Parking_Reservation_System
